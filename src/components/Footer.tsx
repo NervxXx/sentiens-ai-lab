@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Sparkles, Github, Twitter, Linkedin, MessageCircle, Mail, MapPin, Zap } from 'lucide-react';
+import { Github, Twitter, Linkedin, MessageCircle, Mail, MapPin, Zap, Heart, Sparkles } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 const socialLinks = [
   { icon: Github, href: '#', label: 'GitHub' },
@@ -54,10 +55,10 @@ export const Footer = () => {
               whileHover={{ scale: 1.02 }}
             >
               <div className="relative">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-neon-cyan via-neon-purple to-neon-green flex items-center justify-center">
-                  <Sparkles className="w-6 h-6 text-background" />
+                <div className="w-12 h-12 rounded-2xl overflow-hidden">
+                  <img src={logo} alt="SentiensApps Logo" className="w-full h-full object-contain" />
                 </div>
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-neon-cyan to-neon-purple blur-xl opacity-50 group-hover:opacity-80 transition-opacity" />
+                <div className="absolute inset-0 rounded-2xl bg-neon-cyan/20 blur-xl opacity-50 group-hover:opacity-80 transition-opacity" />
               </div>
               <span className="font-orbitron font-bold text-2xl bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
                 SentiensApps
@@ -199,7 +200,7 @@ export const Footer = () => {
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             >
-              <Sparkles className="w-4 h-4 text-neon-cyan" />
+              <Heart className="w-4 h-4 text-neon-cyan" />
             </motion.div>
             <span className="font-inter text-xs">и искусственным интеллектом</span>
           </div>

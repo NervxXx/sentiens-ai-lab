@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,10 +29,10 @@ export const Header = () => {
             whileHover={{ scale: 1.02 }}
           >
             <div className="relative">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-neon-cyan to-neon-purple flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-background" />
+              <div className="w-10 h-10 rounded-xl overflow-hidden">
+                <img src={logo} alt="SentiensApps Logo" className="w-full h-full object-contain" />
               </div>
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-neon-cyan to-neon-purple blur-lg opacity-50 group-hover:opacity-80 transition-opacity" />
+              <div className="absolute inset-0 rounded-xl bg-neon-cyan/20 blur-lg opacity-50 group-hover:opacity-80 transition-opacity" />
             </div>
             <span className="font-orbitron font-bold text-xl text-glow-cyan">
               SentiensApps
