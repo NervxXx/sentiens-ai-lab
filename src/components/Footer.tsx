@@ -55,10 +55,10 @@ export const Footer = () => {
               whileHover={{ scale: 1.02 }}
             >
               <div className="relative">
-                <div className="w-12 h-12 rounded-2xl overflow-hidden">
-                  <img src={logo} alt="SentiensApps Logo" className="w-full h-full object-contain" />
+                <div className="w-12 h-12 rounded-2xl overflow-hidden bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 p-0.5">
+                  <img src={logo} alt="SentiensApps Logo" className="w-full h-full object-contain rounded-xl" />
                 </div>
-                <div className="absolute inset-0 rounded-2xl bg-neon-cyan/20 blur-xl opacity-50 group-hover:opacity-80 transition-opacity" />
+                <div className="absolute inset-0 rounded-2xl bg-neon-cyan/30 blur-xl opacity-0 group-hover:opacity-80 transition-opacity" />
               </div>
               <span className="font-orbitron font-bold text-2xl bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
                 SentiensApps

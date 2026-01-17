@@ -1,12 +1,19 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Cpu, Clock, Calculator, Palette, MessageCircle, Zap } from 'lucide-react';
+import { Cpu, Clock, Calculator, Palette, MessageCircle, Zap, type LucideIcon } from 'lucide-react';
 
-const satellites = [
-  { icon: Clock, label: 'История', color: 'neon-cyan', angle: 0 },
-  { icon: Calculator, label: 'Математика', color: 'neon-purple', angle: 90 },
-  { icon: Palette, label: 'Искусство', color: 'neon-green', angle: 180 },
-  { icon: MessageCircle, label: 'Язык', color: 'neon-cyan', angle: 270 },
+interface Satellite {
+  icon: LucideIcon;
+  label: string;
+  colorClass: string;
+  angle: number;
+}
+
+const satellites: Satellite[] = [
+  { icon: Clock, label: 'История', colorClass: 'text-neon-cyan', angle: 0 },
+  { icon: Calculator, label: 'Математика', colorClass: 'text-neon-purple', angle: 90 },
+  { icon: Palette, label: 'Искусство', colorClass: 'text-neon-green', angle: 180 },
+  { icon: MessageCircle, label: 'Язык', colorClass: 'text-neon-cyan', angle: 270 },
 ];
 
 export const TechCoreSection = () => {
@@ -16,6 +23,12 @@ export const TechCoreSection = () => {
 
   return (
     <section id="tech-core" ref={sectionRef} className="relative py-32 overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-neon-purple/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-neon-cyan/5 rounded-full blur-[100px]" />
+      </div>
+
       <div className="section-container relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Interactive Diagram */}
@@ -31,9 +44,9 @@ export const TechCoreSection = () => {
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-gradient-to-br from-neon-cyan via-neon-purple to-neon-cyan flex items-center justify-center z-10"
                 animate={{
                   boxShadow: [
-                    '0 0 30px rgba(0, 243, 255, 0.5), 0 0 60px rgba(157, 78, 221, 0.3)',
-                    '0 0 50px rgba(0, 243, 255, 0.7), 0 0 80px rgba(157, 78, 221, 0.5)',
-                    '0 0 30px rgba(0, 243, 255, 0.5), 0 0 60px rgba(157, 78, 221, 0.3)',
+                    '0 0 30px hsla(187, 100%, 50%, 0.5), 0 0 60px hsla(270, 70%, 58%, 0.3)',
+                    '0 0 50px hsla(187, 100%, 50%, 0.7), 0 0 80px hsla(270, 70%, 58%, 0.5)',
+                    '0 0 30px hsla(187, 100%, 50%, 0.5), 0 0 60px hsla(270, 70%, 58%, 0.3)',
                   ],
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
@@ -60,11 +73,21 @@ export const TechCoreSection = () => {
                   strokeDasharray="10 5"
                   opacity="0.3"
                 />
+                <circle
+                  cx="200"
+                  cy="200"
+                  r="100"
+                  fill="none"
+                  stroke="url(#orbital-gradient)"
+                  strokeWidth="0.5"
+                  strokeDasharray="5 10"
+                  opacity="0.2"
+                />
                 <defs>
                   <linearGradient id="orbital-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#00F3FF" />
-                    <stop offset="50%" stopColor="#9D4EDD" />
-                    <stop offset="100%" stopColor="#00F3FF" />
+                    <stop offset="0%" stopColor="hsl(187, 100%, 50%)" />
+                    <stop offset="50%" stopColor="hsl(270, 70%, 58%)" />
+                    <stop offset="100%" stopColor="hsl(187, 100%, 50%)" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -103,7 +126,7 @@ export const TechCoreSection = () => {
                         y1="100"
                         x2={100 + Math.cos(angle + Math.PI) * 80}
                         y2={100 + Math.sin(angle + Math.PI) * 80}
-                        stroke={hoveredSatellite === index ? '#00F3FF' : 'rgba(0, 243, 255, 0.3)'}
+                        stroke={hoveredSatellite === index ? 'hsl(187, 100%, 50%)' : 'hsla(187, 100%, 50%, 0.3)'}
                         strokeWidth="2"
                         initial={{ pathLength: 0 }}
                         animate={{ pathLength: 1 }}
@@ -114,18 +137,18 @@ export const TechCoreSection = () => {
                     {/* Satellite node */}
                     <motion.div
                       className={`relative w-16 h-16 rounded-xl glass-card flex items-center justify-center cursor-pointer transition-all duration-300 ${
-                        hoveredSatellite === index ? 'border-primary' : 'border-border'
+                        hoveredSatellite === index ? 'border-primary shadow-lg shadow-primary/20' : 'border-border'
                       }`}
                       whileHover={{ scale: 1.1 }}
                     >
-                      <satellite.icon className={`w-7 h-7 text-${satellite.color}`} />
+                      <satellite.icon className={`w-7 h-7 ${satellite.colorClass}`} />
                       {hoveredSatellite === index && (
                         <motion.div
                           className="absolute -bottom-8 whitespace-nowrap"
                           initial={{ opacity: 0, y: -5 }}
                           animate={{ opacity: 1, y: 0 }}
                         >
-                          <span className="text-xs font-inter text-primary">{satellite.label}</span>
+                          <span className="text-xs font-inter text-primary font-medium">{satellite.label}</span>
                         </motion.div>
                       )}
                     </motion.div>
@@ -180,7 +203,7 @@ export const TechCoreSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="inline-block px-4 py-1 rounded-full text-sm font-inter text-secondary border border-secondary/30 mb-6">
+            <span className="inline-block px-4 py-1.5 rounded-full text-sm font-inter text-secondary border border-secondary/30 mb-6 backdrop-blur-sm bg-secondary/5">
               Технологическое сердце
             </span>
             <h2 className="font-orbitron text-3xl md:text-4xl font-bold mb-6">
@@ -191,12 +214,12 @@ export const TechCoreSection = () => {
             <p className="font-inter text-muted-foreground text-lg mb-8 leading-relaxed">
               В отличие от разрозненных ИИ-сервисов, все наши приложения питаются от постоянно обучающегося центрального ядра.
             </p>
-            <div className="glass-card rounded-2xl p-6 mb-8">
+            <div className="glass-card rounded-2xl p-6 mb-8 border-l-4 border-l-neon-green">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-lg bg-neon-green/20 flex items-center justify-center shrink-0">
                   <Zap className="w-5 h-5 text-neon-green" />
                 </div>
-                <p className="font-inter text-foreground/80 italic">
+                <p className="font-inter text-foreground/90 italic leading-relaxed">
                   "Опыт, полученный в диалоге с Леонардо, делает умнее нашего математического гения."
                 </p>
               </div>
@@ -214,7 +237,7 @@ export const TechCoreSection = () => {
                   transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                   className="flex items-center gap-3 font-inter text-muted-foreground"
                 >
-                  <div className="w-2 h-2 rounded-full bg-primary" />
+                  <div className="w-2 h-2 rounded-full bg-primary shrink-0" />
                   {item}
                 </motion.li>
               ))}

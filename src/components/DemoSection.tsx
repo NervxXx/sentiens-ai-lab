@@ -111,7 +111,7 @@ export const DemoSection = () => {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Задайте вопрос... например: Что такое красота?"
-                  className="w-full bg-muted/50 border border-border rounded-2xl px-6 py-4 pr-14 font-inter text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                  className="w-full bg-muted/80 border border-border rounded-2xl px-6 py-4 pr-14 font-inter text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                   disabled={isProcessing}
                 />
                 <button

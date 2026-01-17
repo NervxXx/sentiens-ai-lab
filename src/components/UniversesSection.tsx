@@ -155,7 +155,7 @@ export const UniversesSection = () => {
                 transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
                 className="group"
               >
-                <div className="glass-card rounded-2xl p-6 h-full relative overflow-hidden border border-border/50 hover:border-muted-foreground/30 transition-colors duration-500">
+                <div className="glass-card rounded-2xl p-6 h-full relative overflow-hidden border border-border hover:border-primary/30 transition-colors duration-500">
                   {/* Locked overlay */}
                   <div className="absolute inset-0 bg-background/30 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="text-center">
