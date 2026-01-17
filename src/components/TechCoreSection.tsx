@@ -10,10 +10,10 @@ interface Satellite {
 }
 
 const satellites: Satellite[] = [
-  { icon: Clock, label: 'История', colorClass: 'text-neon-cyan', angle: 0 },
-  { icon: Calculator, label: 'Математика', colorClass: 'text-neon-purple', angle: 90 },
-  { icon: Palette, label: 'Искусство', colorClass: 'text-neon-green', angle: 180 },
-  { icon: MessageCircle, label: 'Язык', colorClass: 'text-neon-cyan', angle: 270 },
+  { icon: MessageCircle, label: 'Язык', colorClass: 'text-neon-cyan', angle: -90 },       // Top
+  { icon: Clock, label: 'История', colorClass: 'text-neon-cyan', angle: 0 },              // Right
+  { icon: Calculator, label: 'Математика', colorClass: 'text-neon-purple', angle: 90 },   // Bottom
+  { icon: Palette, label: 'Искусство', colorClass: 'text-neon-green', angle: 180 },       // Left
 ];
 
 export const TechCoreSection = () => {
@@ -94,10 +94,10 @@ export const TechCoreSection = () => {
 
               {/* Satellites */}
               {satellites.map((satellite, index) => {
-                const angle = (satellite.angle * Math.PI) / 180;
-                const radius = 90; // Closer to center
-                const x = 50 + Math.cos(angle) * (radius / 2);
-                const y = 50 + Math.sin(angle) * (radius / 2);
+                const angleRad = (satellite.angle * Math.PI) / 180;
+                const radius = 35; // percentage from center
+                const x = 50 + Math.cos(angleRad) * radius;
+                const y = 50 + Math.sin(angleRad) * radius;
 
                 return (
                   <motion.div
@@ -124,8 +124,8 @@ export const TechCoreSection = () => {
                       <motion.line
                         x1="100"
                         y1="100"
-                        x2={100 + Math.cos(angle + Math.PI) * 50}
-                        y2={100 + Math.sin(angle + Math.PI) * 50}
+                        x2={100 + Math.cos(angleRad + Math.PI) * 50}
+                        y2={100 + Math.sin(angleRad + Math.PI) * 50}
                         stroke={hoveredSatellite === index ? 'hsl(187, 100%, 50%)' : 'hsla(187, 100%, 50%, 0.3)'}
                         strokeWidth="2"
                         initial={{ pathLength: 0 }}
@@ -161,8 +161,8 @@ export const TechCoreSection = () => {
                         animate={{
                           scale: [0, 3],
                           opacity: [1, 0],
-                          x: Math.cos(angle + Math.PI) * 35 - 12,
-                          y: Math.sin(angle + Math.PI) * 35 - 12,
+                          x: Math.cos(angleRad + Math.PI) * 35 - 12,
+                          y: Math.sin(angleRad + Math.PI) * 35 - 12,
                         }}
                         transition={{ duration: 1, repeat: Infinity }}
                       />
