@@ -21,7 +21,7 @@ export const Header = () => {
       className="fixed top-0 left-0 right-0 z-50 px-4 py-4"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="glass-card rounded-2xl px-6 py-3 flex items-center justify-between">
+        <div className="glass-card rounded-2xl px-6 py-3 flex items-center justify-between border border-border/50">
           {/* Logo */}
           <motion.a
             href="#"
@@ -29,12 +29,12 @@ export const Header = () => {
             whileHover={{ scale: 1.02 }}
           >
             <div className="relative">
-              <div className="w-10 h-10 rounded-xl overflow-hidden">
-                <img src={logo} alt="SentiensApps Logo" className="w-full h-full object-contain" />
+              <div className="w-10 h-10 rounded-xl overflow-hidden bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 p-0.5">
+                <img src={logo} alt="SentiensApps Logo" className="w-full h-full object-contain rounded-lg" />
               </div>
-              <div className="absolute inset-0 rounded-xl bg-neon-cyan/20 blur-lg opacity-50 group-hover:opacity-80 transition-opacity" />
+              <div className="absolute inset-0 rounded-xl bg-neon-cyan/30 blur-xl opacity-0 group-hover:opacity-80 transition-opacity" />
             </div>
-            <span className="font-orbitron font-bold text-xl text-glow-cyan">
+            <span className="font-orbitron font-bold text-xl bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
               SentiensApps
             </span>
           </motion.a>

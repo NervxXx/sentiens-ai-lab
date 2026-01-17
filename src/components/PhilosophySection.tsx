@@ -1,28 +1,44 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Brain, Target, Network } from 'lucide-react';
+import { Brain, Target, Network, type LucideIcon } from 'lucide-react';
 
-const pillars = [
+interface Pillar {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  colorClass: string;
+  bgClass: string;
+  glowClass: string;
+  gradientClass: string;
+}
+
+const pillars: Pillar[] = [
   {
     icon: Brain,
     title: 'Глубокий смысл',
     description: 'Мы создаем не просто чат-ботов, а целостные личности и специализированные интеллекты.',
-    color: 'neon-cyan',
-    gradient: 'from-neon-cyan to-neon-cyan/50',
+    colorClass: 'text-neon-cyan',
+    bgClass: 'bg-neon-cyan/10',
+    glowClass: 'bg-neon-cyan/20',
+    gradientClass: 'from-neon-cyan to-neon-cyan/50',
   },
   {
     icon: Target,
     title: 'Безупречная польза',
     description: 'Каждое приложение решает конкретную задачу — от обучения до творчества.',
-    color: 'neon-purple',
-    gradient: 'from-neon-purple to-neon-purple/50',
+    colorClass: 'text-neon-purple',
+    bgClass: 'bg-neon-purple/10',
+    glowClass: 'bg-neon-purple/20',
+    gradientClass: 'from-neon-purple to-neon-purple/50',
   },
   {
     icon: Network,
     title: 'Живая экосистема',
     description: 'Наши приложения обогащают друг друга, делясь знаниями внутри единой сети Sentiens.',
-    color: 'neon-green',
-    gradient: 'from-neon-green to-neon-green/50',
+    colorClass: 'text-neon-green',
+    bgClass: 'bg-neon-green/10',
+    glowClass: 'bg-neon-green/20',
+    gradientClass: 'from-neon-green to-neon-green/50',
   },
 ];
 
@@ -60,16 +76,16 @@ export const PhilosophySection = () => {
             />
             <defs>
               <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00F3FF" />
-                <stop offset="100%" stopColor="#9D4EDD" />
+                <stop offset="0%" stopColor="hsl(187, 100%, 50%)" />
+                <stop offset="100%" stopColor="hsl(270, 70%, 58%)" />
               </linearGradient>
               <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#9D4EDD" />
-                <stop offset="100%" stopColor="#00FF9D" />
+                <stop offset="0%" stopColor="hsl(270, 70%, 58%)" />
+                <stop offset="100%" stopColor="hsl(157, 100%, 50%)" />
               </linearGradient>
               <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00FF9D" />
-                <stop offset="100%" stopColor="#00F3FF" />
+                <stop offset="0%" stopColor="hsl(157, 100%, 50%)" />
+                <stop offset="100%" stopColor="hsl(187, 100%, 50%)" />
               </linearGradient>
             </defs>
           </svg>
@@ -84,13 +100,13 @@ export const PhilosophySection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <span className="inline-block px-4 py-1 rounded-full text-sm font-inter text-primary border border-primary/30 mb-6">
+          <span className="inline-block px-4 py-1.5 rounded-full text-sm font-inter text-primary border border-primary/30 mb-6 backdrop-blur-sm bg-primary/5">
             Ядро Sentiens
           </span>
           <h2 className="font-orbitron text-3xl md:text-5xl font-bold mb-6">
             Философия <span className="text-gradient-neural">Sentiens</span>
           </h2>
-          <p className="font-inter text-muted-foreground max-w-xl mx-auto">
+          <p className="font-inter text-muted-foreground max-w-xl mx-auto text-lg">
             Три принципа, которые определяют каждое наше решение и каждую строку кода.
           </p>
         </motion.div>
@@ -107,16 +123,16 @@ export const PhilosophySection = () => {
             >
               <div className="glass-card-hover rounded-2xl p-8 h-full relative overflow-hidden">
                 {/* Glow effect on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${pillar.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${pillar.gradientClass} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
                 
                 {/* Icon */}
-                <div className={`relative w-16 h-16 rounded-2xl bg-${pillar.color}/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <pillar.icon className={`w-8 h-8 text-${pillar.color}`} />
-                  <div className={`absolute inset-0 rounded-2xl bg-${pillar.color}/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity`} />
+                <div className={`relative w-16 h-16 rounded-2xl ${pillar.bgClass} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <pillar.icon className={`w-8 h-8 ${pillar.colorClass}`} />
+                  <div className={`absolute inset-0 rounded-2xl ${pillar.glowClass} blur-xl opacity-0 group-hover:opacity-100 transition-opacity`} />
                 </div>
 
                 {/* Content */}
-                <h3 className="font-orbitron text-xl font-semibold mb-4 group-hover:text-glow-cyan transition-all">
+                <h3 className="font-orbitron text-xl font-semibold mb-4 group-hover:text-primary transition-colors">
                   {pillar.title}
                 </h3>
                 <p className="font-inter text-muted-foreground leading-relaxed">
@@ -124,7 +140,7 @@ export const PhilosophySection = () => {
                 </p>
 
                 {/* Decorative line */}
-                <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${pillar.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${pillar.gradientClass} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
               </div>
             </motion.div>
           ))}

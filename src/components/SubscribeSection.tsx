@@ -92,7 +92,7 @@ export const SubscribeSection = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Введите ваш email"
                     required
-                    className="flex-1 bg-muted/50 border border-border rounded-xl px-6 py-4 font-inter text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                    className="flex-1 bg-muted/80 border border-border rounded-xl px-6 py-4 font-inter text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                   />
                   <button
                     type="submit"
