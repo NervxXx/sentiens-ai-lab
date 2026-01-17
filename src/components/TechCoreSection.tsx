@@ -95,14 +95,14 @@ export const TechCoreSection = () => {
               {/* Satellites */}
               {satellites.map((satellite, index) => {
                 const angle = (satellite.angle * Math.PI) / 180;
-                const radius = 140;
+                const radius = 90; // Closer to center
                 const x = 50 + Math.cos(angle) * (radius / 2);
                 const y = 50 + Math.sin(angle) * (radius / 2);
 
                 return (
                   <motion.div
                     key={satellite.label}
-                    className="absolute"
+                    className="absolute hidden md:block"
                     style={{ left: `${x}%`, top: `${y}%`, transform: 'translate(-50%, -50%)' }}
                     initial={{ opacity: 0, scale: 0 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -124,8 +124,8 @@ export const TechCoreSection = () => {
                       <motion.line
                         x1="100"
                         y1="100"
-                        x2={100 + Math.cos(angle + Math.PI) * 80}
-                        y2={100 + Math.sin(angle + Math.PI) * 80}
+                        x2={100 + Math.cos(angle + Math.PI) * 50}
+                        y2={100 + Math.sin(angle + Math.PI) * 50}
                         stroke={hoveredSatellite === index ? 'hsl(187, 100%, 50%)' : 'hsla(187, 100%, 50%, 0.3)'}
                         strokeWidth="2"
                         initial={{ pathLength: 0 }}
@@ -161,8 +161,8 @@ export const TechCoreSection = () => {
                         animate={{
                           scale: [0, 3],
                           opacity: [1, 0],
-                          x: Math.cos(angle + Math.PI) * 60 - 12,
-                          y: Math.sin(angle + Math.PI) * 60 - 12,
+                          x: Math.cos(angle + Math.PI) * 35 - 12,
+                          y: Math.sin(angle + Math.PI) * 35 - 12,
                         }}
                         transition={{ duration: 1, repeat: Infinity }}
                       />
@@ -175,14 +175,14 @@ export const TechCoreSection = () => {
               {satellites.map((satellite, index) => (
                 <motion.div
                   key={`pulse-${index}`}
-                  className="absolute w-2 h-2 rounded-full bg-primary"
+                  className="absolute w-2 h-2 rounded-full bg-primary hidden md:block"
                   style={{
                     left: '50%',
                     top: '50%',
                   }}
                   animate={{
-                    x: [0, Math.cos((satellite.angle * Math.PI) / 180) * 100],
-                    y: [0, Math.sin((satellite.angle * Math.PI) / 180) * 100],
+                    x: [0, Math.cos((satellite.angle * Math.PI) / 180) * 60],
+                    y: [0, Math.sin((satellite.angle * Math.PI) / 180) * 60],
                     opacity: [1, 0],
                     scale: [1, 0.5],
                   }}
