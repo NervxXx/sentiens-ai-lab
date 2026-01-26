@@ -108,50 +108,8 @@ export const HeroSection = () => {
             </a>
           </motion.div>
 
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
-            className="mt-20 grid grid-cols-3 gap-8 max-w-lg mx-auto"
-          >
-            {[
-              { value: '5+', label: 'Вселенных' },
-              { value: '∞', label: 'Возможностей' },
-              { value: '1', label: 'Ядро ИИ' },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="font-orbitron text-2xl md:text-3xl font-bold text-glow-cyan text-primary mb-1">
-                  {stat.value}
-                </div>
-                <div className="font-inter text-xs md:text-sm text-muted-foreground">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2"
-        >
-          <motion.div
-            animate={{ opacity: [0.5, 1, 0.5], y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-1.5 h-3 rounded-full bg-primary"
-          />
-        </motion.div>
-      </motion.div>
     </section>
   );
 };
