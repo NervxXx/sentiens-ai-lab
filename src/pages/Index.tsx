@@ -3,8 +3,6 @@ import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
 import { PhilosophySection } from '@/components/PhilosophySection';
 import { UniversesSection } from '@/components/UniversesSection';
-
-import { DemoSection } from '@/components/DemoSection';
 import { SubscribeSection } from '@/components/SubscribeSection';
 import { Footer } from '@/components/Footer';
 import { ScrollProgress } from '@/components/ScrollProgress';
@@ -26,8 +24,6 @@ const Index = () => {
         <HeroSection />
         <PhilosophySection />
         <UniversesSection />
-        
-        <DemoSection />
         <SubscribeSection />
       </main>
       
