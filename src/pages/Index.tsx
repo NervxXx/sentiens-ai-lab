@@ -7,10 +7,14 @@ import { TechCoreSection } from '@/components/TechCoreSection';
 import { DemoSection } from '@/components/DemoSection';
 import { SubscribeSection } from '@/components/SubscribeSection';
 import { Footer } from '@/components/Footer';
+import { ScrollProgress } from '@/components/ScrollProgress';
 
 const Index = () => {
   return (
     <div className="relative min-h-screen bg-background overflow-x-hidden">
+      {/* Scroll progress indicator */}
+      <ScrollProgress />
+      
       {/* Dynamic neural network background */}
       <NeuralBackground />
       
