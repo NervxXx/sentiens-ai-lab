@@ -143,31 +143,56 @@ export const UniversesSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <p className="text-center font-inter text-muted-foreground mb-8">
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.5 }}
+            className="text-center font-inter text-muted-foreground mb-8"
+          >
             Новые вселенные на стадии запуска. Следите за обновлениями.
-          </p>
+          </motion.p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {upcomingApps.map((app, index) => (
               <motion.div
                 key={app.id}
-                initial={{ opacity: 0, y: 40 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 0.5 + index * 0.15,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{ y: -8, scale: 1.03 }}
                 className="group"
               >
-                <div className="glass-card rounded-2xl p-6 h-full relative overflow-hidden border border-border hover:border-primary/30 transition-colors duration-500">
-                  {/* Locked overlay */}
-                  <div className="absolute inset-0 bg-background/30 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="text-center">
+                <div className="glass-card rounded-2xl p-6 h-full relative overflow-hidden border border-border hover:border-primary/30 transition-all duration-500 hover:shadow-lg hover:shadow-primary/5">
+                  {/* Locked overlay with improved animation */}
+                  <motion.div 
+                    className="absolute inset-0 bg-background/30 backdrop-blur-sm flex items-center justify-center"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <motion.div 
+                      className="text-center"
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      whileHover={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 0.1 }}
+                    >
                       <Lock className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
                       <span className="text-sm font-inter text-muted-foreground">Скоро</span>
-                    </div>
-                  </div>
+                    </motion.div>
+                  </motion.div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center shrink-0">
+                    <motion.div 
+                      className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center shrink-0"
+                      whileHover={{ rotate: 10, scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
                       <app.icon className="w-6 h-6 text-muted-foreground" />
-                    </div>
+                    </motion.div>
                     <div>
                       <h4 className="font-orbitron font-semibold mb-1">{app.name}</h4>
                       <p className="text-sm font-inter text-muted-foreground">
@@ -176,8 +201,18 @@ export const UniversesSection = () => {
                     </div>
                   </div>
 
-                  {/* Shimmer effect */}
-                  <div className="absolute inset-0 shimmer opacity-30" />
+                  {/* Enhanced shimmer effect */}
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                    initial={{ x: '-100%' }}
+                    animate={{ x: '200%' }}
+                    transition={{ 
+                      duration: 3, 
+                      repeat: Infinity, 
+                      repeatDelay: 2,
+                      ease: "easeInOut"
+                    }}
+                  />
                 </div>
               </motion.div>
             ))}

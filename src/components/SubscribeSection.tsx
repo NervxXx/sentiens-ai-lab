@@ -112,32 +112,55 @@ export const SubscribeSection = () => {
               </div>
 
               {/* Interests */}
-              <div className="space-y-4">
+              <motion.div 
+                className="space-y-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
                 <p className="font-inter text-sm text-muted-foreground">
                   Выберите интересующие направления:
                 </p>
                 <div className="flex flex-wrap gap-3 justify-center">
-                  {interests.map((interest) => {
+                  {interests.map((interest, index) => {
                     const isSelected = selectedInterests.includes(interest.id);
                     return (
-                      <button
+                      <motion.button
                         key={interest.id}
                         type="button"
                         onClick={() => toggleInterest(interest.id)}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                        transition={{ delay: 0.5 + index * 0.1, type: "spring" }}
+                        whileHover={{ scale: 1.08, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
                         className={`group flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 font-inter text-sm ${
                           isSelected
-                            ? 'bg-primary/20 border-primary text-primary'
-                            : 'bg-transparent border-border text-muted-foreground hover:border-primary/50 hover:text-foreground'
+                            ? 'bg-primary/20 border-primary text-primary shadow-lg shadow-primary/20'
+                            : 'bg-transparent border-border text-muted-foreground hover:border-primary/50 hover:text-foreground hover:shadow-md'
                         }`}
                       >
-                        <interest.icon className="w-4 h-4" />
+                        <motion.span
+                          animate={{ rotate: isSelected ? 360 : 0 }}
+                          transition={{ duration: 0.4 }}
+                        >
+                          <interest.icon className="w-4 h-4" />
+                        </motion.span>
                         {interest.label}
-                        {isSelected && <Check className="w-4 h-4" />}
-                      </button>
+                        {isSelected && (
+                          <motion.span
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: "spring", stiffness: 500 }}
+                          >
+                            <Check className="w-4 h-4" />
+                          </motion.span>
+                        )}
+                      </motion.button>
                     );
                   })}
                 </div>
-              </div>
+              </motion.div>
             </motion.form>
           ) : (
             <motion.div
