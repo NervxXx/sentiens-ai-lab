@@ -8,6 +8,7 @@ export const Header = () => {
 
   const navItems = [
     { label: 'Философия', href: '#philosophy' },
+    { label: 'Технология', href: '#technology' },
     { label: 'Вселенные', href: '#universes' },
   ];
 
