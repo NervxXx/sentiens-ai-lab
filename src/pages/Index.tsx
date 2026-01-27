@@ -2,6 +2,7 @@ import { NeuralBackground } from '@/components/NeuralBackground';
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
 import { PhilosophySection } from '@/components/PhilosophySection';
+import { TechSection } from '@/components/TechSection';
 import { UniversesSection } from '@/components/UniversesSection';
 import { SubscribeSection } from '@/components/SubscribeSection';
 import { Footer } from '@/components/Footer';
@@ -23,6 +24,7 @@ const Index = () => {
       <main className="relative z-10">
         <HeroSection />
         <PhilosophySection />
+        <TechSection />
         <UniversesSection />
         <SubscribeSection />
       </main>
