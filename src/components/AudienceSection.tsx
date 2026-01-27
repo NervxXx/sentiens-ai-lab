@@ -11,54 +11,102 @@ interface AudienceCardProps {
   index: number;
   accentGradient: string;
   iconBg: string;
+  glowColor: string;
 }
 
-const AudienceCard = ({ icon, title, problem, solution, index, accentGradient, iconBg }: AudienceCardProps) => {
+const AudienceCard = ({ icon, title, problem, solution, index, accentGradient, iconBg, glowColor }: AudienceCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 60, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: index * 0.2 }}
-      className="relative"
+      transition={{ 
+        duration: 0.7, 
+        delay: index * 0.15,
+        type: "spring",
+        stiffness: 100
+      }}
+      className="relative group"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div 
+      {/* Animated glow effect */}
+      <motion.div 
+        className={cn("absolute -inset-1 rounded-3xl blur-xl opacity-0", glowColor)}
+        animate={{ 
+          opacity: isHovered ? 0.4 : 0,
+          scale: isHovered ? 1.02 : 1
+        }}
+        transition={{ duration: 0.4 }}
+      />
+      
+      <motion.div 
         className={cn(
           "relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-500",
           "bg-gradient-to-br from-background/80 to-background/40",
-          "border border-border/50 hover:border-primary/50",
+          "border border-border/50",
           "backdrop-blur-xl",
           isExpanded ? "shadow-2xl shadow-primary/10" : "shadow-lg"
         )}
         onClick={() => setIsExpanded(!isExpanded)}
+        whileHover={{ 
+          y: -8,
+          borderColor: 'hsl(var(--primary) / 0.5)',
+        }}
+        transition={{ duration: 0.3 }}
       >
-        {/* Gradient accent line */}
-        <div className={cn("absolute top-0 left-0 right-0 h-1", accentGradient)} />
+        {/* Gradient accent line with animation */}
+        <motion.div 
+          className={cn("absolute top-0 left-0 right-0 h-1", accentGradient)}
+          animate={{ scaleX: isHovered ? 1 : 0.3, originX: 0 }}
+          transition={{ duration: 0.5 }}
+        />
+        
+        {/* Shimmer effect on hover */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full"
+          animate={{ translateX: isHovered ? '200%' : '-100%' }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+        />
         
         {/* Header - always visible */}
         <div className="p-6 md:p-8">
           <div className="flex items-start gap-5">
-            {/* Icon container */}
+            {/* Icon container with enhanced animation */}
             <motion.div 
-              animate={{ rotate: isExpanded ? 360 : 0 }}
-              transition={{ duration: 0.6 }}
+              animate={{ 
+                rotate: isExpanded ? 360 : 0,
+                scale: isHovered ? 1.1 : 1
+              }}
+              transition={{ duration: 0.6, type: "spring" }}
               className={cn(
                 "flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center",
-                "shadow-lg",
+                "shadow-lg relative",
                 iconBg
               )}
             >
               {icon}
+              {/* Icon glow */}
+              <motion.div 
+                className={cn("absolute inset-0 rounded-2xl blur-md", iconBg)}
+                animate={{ opacity: isHovered ? 0.6 : 0 }}
+                transition={{ duration: 0.3 }}
+              />
             </motion.div>
             
             {/* Title and preview */}
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between gap-4">
-                <h3 className="font-orbitron text-xl md:text-2xl font-bold text-foreground">
+                <motion.h3 
+                  className="font-orbitron text-xl md:text-2xl font-bold text-foreground"
+                  animate={{ x: isHovered ? 4 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
                   {title}
-                </h3>
+                </motion.h3>
                 <motion.div
                   animate={{ rotate: isExpanded ? 90 : 0 }}
                   transition={{ duration: 0.3 }}
@@ -134,13 +182,13 @@ const AudienceCard = ({ icon, title, problem, solution, index, accentGradient, i
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
 
 export const AudienceSection = () => {
-  const audiences = [
+const audiences = [
     {
       icon: <Building2 className="w-8 h-8 text-white" />,
       title: "Корпорации",
@@ -148,6 +196,7 @@ export const AudienceSection = () => {
       solution: "Агенты как «цифровые коллеги» и «клиенты» для отработки переговоров, продаж и управления в динамичных, адаптивных сценариях.",
       accentGradient: "bg-gradient-to-r from-neon-cyan via-neon-cyan/50 to-transparent",
       iconBg: "bg-gradient-to-br from-neon-cyan to-neon-cyan/70",
+      glowColor: "bg-neon-cyan/30",
     },
     {
       icon: <GraduationCap className="w-8 h-8 text-white" />,
@@ -156,6 +205,7 @@ export const AudienceSection = () => {
       solution: "Агенты как персональные наставники и интерактивные «персонажи-знания», которые учат через диалог, а не монолог.",
       accentGradient: "bg-gradient-to-r from-neon-purple via-neon-purple/50 to-transparent",
       iconBg: "bg-gradient-to-br from-neon-purple to-neon-purple/70",
+      glowColor: "bg-neon-purple/30",
     },
     {
       icon: <Code2 className="w-8 h-8 text-white" />,
@@ -164,6 +214,7 @@ export const AudienceSection = () => {
       solution: "Наш движок — это инфраструктура для быстрого создания и внедрения глубоких, автономных агентов в любые продукты и миры.",
       accentGradient: "bg-gradient-to-r from-neon-green via-neon-green/50 to-transparent",
       iconBg: "bg-gradient-to-br from-neon-green to-neon-green/70",
+      glowColor: "bg-neon-green/30",
     },
   ];
 
@@ -171,34 +222,61 @@ export const AudienceSection = () => {
     <section id="audience" className="relative py-24 md:py-32 overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 grid-bg opacity-20" />
-      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-cyan/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/3 left-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-3xl" />
+      <motion.div 
+        className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-cyan/5 rounded-full blur-3xl"
+        animate={{ 
+          x: [0, 30, 0],
+          y: [0, -20, 0],
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div 
+        className="absolute bottom-1/3 left-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-3xl"
+        animate={{ 
+          x: [0, -30, 0],
+          y: [0, 20, 0],
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
 
       <div className="section-container relative z-10">
-        {/* Header */}
+        {/* Header with staggered animations */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16 md:mb-20"
         >
           <motion.span
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20, scale: 0.8 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.1, type: "spring", stiffness: 150 }}
             className="inline-block px-4 py-2 rounded-full border border-neon-purple/30 bg-neon-purple/5 text-neon-purple text-sm font-medium mb-6"
           >
             Аудитория
           </motion.span>
           
-          <h2 className="font-orbitron text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="font-orbitron text-3xl md:text-5xl lg:text-6xl font-bold mb-6"
+          >
             <span className="text-gradient-neural">Для кого это?</span>
-          </h2>
-          <p className="font-inter text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+          </motion.h2>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="font-inter text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
+          >
             Наша технология создаёт новый класс цифровых сущностей. Мы решаем задачи там, где требуется не просто ответ, а <span className="text-primary font-medium">осмысленный диалог</span>, <span className="text-neon-purple font-medium">управляемая симуляция</span> или <span className="text-neon-green font-medium">живое взаимодействие</span>.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Audience cards */}

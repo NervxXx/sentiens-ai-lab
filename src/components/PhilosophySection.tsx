@@ -116,31 +116,60 @@ export const PhilosophySection = () => {
           {pillars.map((pillar, index) => (
             <motion.div
               key={pillar.title}
-              initial={{ opacity: 0, y: 60 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 + index * 0.2 }}
-              className="group"
+              initial={{ opacity: 0, y: 80, rotateX: 15 }}
+              animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+              transition={{ 
+                duration: 0.8, 
+                delay: 0.2 + index * 0.15,
+                type: "spring",
+                stiffness: 80
+              }}
+              whileHover={{ y: -12, scale: 1.02 }}
+              className="group perspective-1000"
             >
-              <div className="glass-card-hover rounded-2xl p-8 h-full relative overflow-hidden">
+              <div className="glass-card-hover rounded-2xl p-8 h-full relative overflow-hidden transition-all duration-500">
                 {/* Glow effect on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${pillar.gradientClass} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                <motion.div 
+                  className={`absolute inset-0 bg-gradient-to-br ${pillar.gradientClass} opacity-0 group-hover:opacity-15 transition-opacity duration-500`}
+                />
+                
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                 
                 {/* Icon */}
-                <div className={`relative w-16 h-16 rounded-2xl ${pillar.bgClass} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <motion.div 
+                  className={`relative w-16 h-16 rounded-2xl ${pillar.bgClass} flex items-center justify-center mb-6`}
+                  whileHover={{ scale: 1.15, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   <pillar.icon className={`w-8 h-8 ${pillar.colorClass}`} />
-                  <div className={`absolute inset-0 rounded-2xl ${pillar.glowClass} blur-xl opacity-0 group-hover:opacity-100 transition-opacity`} />
-                </div>
+                  <motion.div 
+                    className={`absolute inset-0 rounded-2xl ${pillar.glowClass} blur-xl`}
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.div>
 
                 {/* Content */}
-                <h3 className="font-orbitron text-xl font-semibold mb-4 group-hover:text-primary transition-colors">
-                  {pillar.title}
-                </h3>
+                <motion.h3 
+                  className="font-orbitron text-xl font-semibold mb-4 transition-colors duration-300"
+                  whileHover={{ x: 4 }}
+                >
+                  <span className="group-hover:text-primary transition-colors">{pillar.title}</span>
+                </motion.h3>
                 <p className="font-inter text-muted-foreground leading-relaxed">
                   {pillar.description}
                 </p>
 
-                {/* Decorative line */}
-                <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${pillar.gradientClass} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                {/* Decorative line with animation */}
+                <motion.div 
+                  className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${pillar.gradientClass}`}
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.4 }}
+                  style={{ originX: 0 }}
+                />
               </div>
             </motion.div>
           ))}
