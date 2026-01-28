@@ -2,6 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Brain, Target, Network, type LucideIcon } from 'lucide-react';
 import { AnimatedText, AnimatedGradientText } from './AnimatedText';
+import { useLocalization } from '@/contexts/LocalizationContext';
 
 interface Pillar {
   icon: LucideIcon;
@@ -13,11 +14,11 @@ interface Pillar {
   gradientClass: string;
 }
 
-const pillars: Pillar[] = [
+const getPillars = (t: (key: string) => string): Pillar[] => [
   {
     icon: Brain,
-    title: 'Глубокий смысл',
-    description: 'Мы создаем не просто чат-ботов, а целостные личности и специализированные интеллекты.',
+    title: t('philosophy.pillars.0.title'),
+    description: t('philosophy.pillars.0.description'),
     colorClass: 'text-neon-cyan',
     bgClass: 'bg-neon-cyan/10',
     glowClass: 'bg-neon-cyan/20',
@@ -25,8 +26,8 @@ const pillars: Pillar[] = [
   },
   {
     icon: Target,
-    title: 'Безупречная польза',
-    description: 'Каждое приложение решает конкретную задачу — от обучения до творчества.',
+    title: t('philosophy.pillars.1.title'),
+    description: t('philosophy.pillars.1.description'),
     colorClass: 'text-neon-purple',
     bgClass: 'bg-neon-purple/10',
     glowClass: 'bg-neon-purple/20',
@@ -34,8 +35,8 @@ const pillars: Pillar[] = [
   },
   {
     icon: Network,
-    title: 'Живая экосистема',
-    description: 'Наши приложения обогащают друг друга, делясь знаниями внутри единой сети Sentiens.',
+    title: t('philosophy.pillars.2.title'),
+    description: t('philosophy.pillars.2.description'),
     colorClass: 'text-neon-green',
     bgClass: 'bg-neon-green/10',
     glowClass: 'bg-neon-green/20',
@@ -46,9 +47,12 @@ const pillars: Pillar[] = [
 export const PhilosophySection = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const { t } = useLocalization();
+  
+  const pillars = getPillars(t);
 
   return (
-    <section id="philosophy" ref={sectionRef} className="relative py-32 overflow-hidden">
+    <section id="philosophy" ref={sectionRef} className="relative py-32 overflow-x-hidden">
       {/* Central rotating structure */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
         <motion.div
@@ -102,14 +106,14 @@ export const PhilosophySection = () => {
           className="text-center mb-20"
         >
           <span className="inline-block px-4 py-1.5 rounded-full text-sm font-inter text-primary border border-primary/30 mb-6 backdrop-blur-sm bg-primary/5">
-            Ядро Sentiens
+            {t('philosophy.core_title')}
           </span>
           <h2 className="font-orbitron text-3xl md:text-5xl font-bold mb-6">
-            <AnimatedText text="Философия" delay={0} />{' '}
+            <AnimatedText text={t('philosophy.title').split(' ')[0]} delay={0} />{' '}
             <AnimatedGradientText text="Sentiens" delay={0.4} />
           </h2>
           <p className="font-inter text-muted-foreground max-w-xl mx-auto text-lg">
-            <AnimatedText text="Три принципа, которые определяют каждое наше решение и каждую строку кода." delay={0.6} staggerChildren={0.015} />
+            <AnimatedText text={t('philosophy.subtitle')} delay={0.6} staggerChildren={0.015} />
           </p>
         </motion.div>
 

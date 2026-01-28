@@ -22,7 +22,7 @@ const Index = () => {
       <Header />
       
       {/* Main content */}
-      <main className="relative z-10">
+      <main className="relative z-10 overflow-x-hidden">
         <HeroSection />
         <PhilosophySection />
         <TechSection />

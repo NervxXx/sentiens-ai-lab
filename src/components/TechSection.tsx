@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { ChevronDown, ChevronUp, Brain, Database, User, Users, Cpu, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AnimatedGradientText, AnimatedText } from './AnimatedText';
+import { useLocalization } from '@/contexts/LocalizationContext';
 
 interface PillarProps {
   icon: React.ReactNode;
@@ -206,92 +207,91 @@ const ArchitectureVisual = () => {
   );
 };
 
+const getPillars = (t: (key: string) => string): Omit<PillarProps, 'index'>[] => [
+  {
+    icon: <Brain className="w-7 h-7" />,
+    title: t('technology.pillars.0.title'),
+    subtitle: t('technology.pillars.0.subtitle'),
+    preview: t('technology.pillars.0.preview'),
+    accentColor: 'cyan',
+    fullContent: (
+      <div className="space-y-4 font-inter text-sm text-muted-foreground">
+        <div>
+          <h4 className="font-semibold text-foreground mb-2">{t('technology.pillars.0.fullContent.dynamic_goals.title')}</h4>
+          <p>{t('technology.pillars.0.fullContent.dynamic_goals.content')}</p>
+        </div>
+        <div>
+          <h4 className="font-semibold text-foreground mb-2">{t('technology.pillars.0.fullContent.tools.title')}</h4>
+          <p>{t('technology.pillars.0.fullContent.tools.content')}</p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    icon: <Database className="w-7 h-7" />,
+    title: t('technology.pillars.1.title'),
+    subtitle: t('technology.pillars.1.subtitle'),
+    preview: t('technology.pillars.1.preview'),
+    accentColor: 'purple',
+    fullContent: (
+      <div className="space-y-4 font-inter text-sm text-muted-foreground">
+        <div>
+          <h4 className="font-semibold text-foreground mb-2">{t('technology.pillars.1.fullContent.memory_types.title')}</h4>
+          <p>{t('technology.pillars.1.fullContent.memory_types.content')}</p>
+        </div>
+        <div>
+          <h4 className="font-semibold text-foreground mb-2">{t('technology.pillars.1.fullContent.self_vectorization.title')}</h4>
+          <p>{t('technology.pillars.1.fullContent.self_vectorization.content')}</p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    icon: <User className="w-7 h-7" />,
+    title: t('technology.pillars.2.title'),
+    subtitle: t('technology.pillars.2.subtitle'),
+    preview: t('technology.pillars.2.preview'),
+    accentColor: 'green',
+    fullContent: (
+      <div className="space-y-4 font-inter text-sm text-muted-foreground">
+        <div>
+          <h4 className="font-semibold text-foreground mb-2">{t('technology.pillars.2.fullContent.deep_role.title')}</h4>
+          <p>{t('technology.pillars.2.fullContent.deep_role.content')}</p>
+        </div>
+        <div>
+          <h4 className="font-semibold text-foreground mb-2">{t('technology.pillars.2.fullContent.adaptive_behavior.title')}</h4>
+          <p>{t('technology.pillars.2.fullContent.adaptive_behavior.content')}</p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    icon: <Users className="w-7 h-7" />,
+    title: t('technology.pillars.3.title'),
+    subtitle: t('technology.pillars.3.subtitle'),
+    preview: t('technology.pillars.3.preview'),
+    accentColor: 'mixed',
+    fullContent: (
+      <div className="space-y-4 font-inter text-sm text-muted-foreground">
+        <div>
+          <h4 className="font-semibold text-foreground mb-2">{t('technology.pillars.3.fullContent.sync_worlds.title')}</h4>
+          <p>{t('technology.pillars.3.fullContent.sync_worlds.content')}</p>
+        </div>
+        <div>
+          <h4 className="font-semibold text-foreground mb-2">{t('technology.pillars.3.fullContent.swarm_intelligence.title')}</h4>
+          <p>{t('technology.pillars.3.fullContent.swarm_intelligence.content')}</p>
+        </div>
+      </div>
+    ),
+  },
+];
+
 export const TechSection = () => {
-  const pillars: Omit<PillarProps, 'index'>[] = [
-    {
-      icon: <Brain className="w-7 h-7" />,
-      title: "Agent Core",
-      subtitle: "Слой Агентности",
-      preview: "Ядро принятия решений: Каждый наш агент обладает автономным циклом: Восприятие → Анализ контекста → Планирование → Действие → Запись в память.",
-      accentColor: 'cyan',
-      fullContent: (
-        <div className="space-y-4 font-inter text-sm text-muted-foreground">
-          <div>
-            <h4 className="font-semibold text-foreground mb-2">Динамическое целеполагание</h4>
-            <p>Агенты не просто отвечают на запросы. Они формируют и корректируют краткосрочные и долгосрочные цели внутри заданной миссии: обучить пользователя, поддержать исследование, решить задачу.</p>
-          </div>
-          <div>
-            <h4 className="font-semibold text-foreground mb-2">Инструментарий (Tools)</h4>
-            <p>Агенты умеют безопасно взаимодействовать с внешними системами: искать данные, выполнять вычисления, управлять элементами среды.</p>
-          </div>
-        </div>
-      ),
-    },
-    {
-      icon: <Database className="w-7 h-7" />,
-      title: "Mnemosyne Layer",
-      subtitle: "Слой Памяти и Контекста",
-      preview: "Мы выходим за рамки короткого контекстного окна. У агента есть оперативная, долговременная и процедурная память.",
-      accentColor: 'purple',
-      fullContent: (
-        <div className="space-y-4 font-inter text-sm text-muted-foreground">
-          <div>
-            <h4 className="font-semibold text-foreground mb-2">Векторная и иерархическая память</h4>
-            <ul className="list-disc list-inside space-y-1 ml-2">
-              <li><span className="text-primary">Оперативная память</span> — ход текущего диалога</li>
-              <li><span className="text-primary">Долговременная память</span> — векторная база знаний о мире и истории взаимодействий</li>
-              <li><span className="text-primary">Процедурная память</span> — запомненные успешные паттерны поведения и решения</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold text-foreground mb-2">Самовекторизация опыта</h4>
-            <p>Ключевая инновация. Агент автоматически анализирует и сохраняет суть каждого взаимодействия в свою память, формируя постоянно растущую «личность» и базу опыта.</p>
-          </div>
-        </div>
-      ),
-    },
-    {
-      icon: <User className="w-7 h-7" />,
-      title: "Persona Framework",
-      subtitle: "Слой Поведения и Ролевой Модели",
-      preview: "Не просто промпт: Это сложная система ограничений, ценностей, словаря и коммуникативных стилей.",
-      accentColor: 'green',
-      fullContent: (
-        <div className="space-y-4 font-inter text-sm text-muted-foreground">
-          <div>
-            <h4 className="font-semibold text-foreground mb-2">Глубокая ролевая модель</h4>
-            <p>Система «одевает» базовую модель в непротиворечивую и глубокую роль, создавая уникальную цифровую личность с последовательным характером.</p>
-          </div>
-          <div>
-            <h4 className="font-semibold text-foreground mb-2">Адаптивное поведение</h4>
-            <p>Модель может менять тон, глубину объяснений и стратегию взаимодействия в зависимости от пользователя и контекста.</p>
-          </div>
-        </div>
-      ),
-    },
-    {
-      icon: <Users className="w-7 h-7" />,
-      title: "Multi-Agent Orchestration",
-      subtitle: "Слой Коллаборации",
-      preview: "Наша платформа позволяет создавать не отдельных ботов, а экосистемы взаимодействующих агентов.",
-      accentColor: 'mixed',
-      fullContent: (
-        <div className="space-y-4 font-inter text-sm text-muted-foreground">
-          <div>
-            <h4 className="font-semibold text-foreground mb-2">Синхронизированные миры</h4>
-            <p>Агенты могут обмениваться сообщениями, запрашивать помощь, оспаривать аргументы друг друга или совместно решать сложные задачи.</p>
-          </div>
-          <div>
-            <h4 className="font-semibold text-foreground mb-2">Сверхразум (Swarm Intelligence)</h4>
-            <p>В определенных сценариях группа агентов под управлением оркестратора может решать задачи, недоступные одной модели.</p>
-          </div>
-        </div>
-      ),
-    },
-  ];
+  const { t } = useLocalization();
+  const pillars = getPillars(t);
 
   return (
-    <section id="technology" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="technology" className="relative py-24 md:py-32 overflow-x-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 grid-bg opacity-30" />
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-neon-purple/10 rounded-full blur-3xl" />
@@ -313,17 +313,17 @@ export const TechSection = () => {
             transition={{ delay: 0.2 }}
             className="inline-block px-4 py-2 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 text-neon-cyan text-sm font-medium mb-6"
           >
-            Core Tech
+            {t('technology.badge')}
           </motion.span>
           
           <h2 className="font-orbitron text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <AnimatedGradientText text="Sentiens Engine" delay={0.2} />
+            <AnimatedGradientText text={t('technology.title')} delay={0.2} />
           </h2>
           <p className="font-orbitron text-xl md:text-2xl text-foreground/80 mb-6">
-            <AnimatedText text="Архитектура сознания" delay={0.6} />
+            <AnimatedText text={t('technology.subtitle')} delay={0.6} />
           </p>
           <p className="font-inter text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            <AnimatedText text="Технологическая платформа, которая превращает языковые модели в автономных, целеустремленных и обучаемых агентов." delay={0.9} staggerChildren={0.01} />
+            <AnimatedText text={t('technology.description')} delay={0.9} staggerChildren={0.01} />
           </p>
         </motion.div>
 
@@ -347,7 +347,7 @@ export const TechSection = () => {
           className="glass-card rounded-2xl p-6 md:p-8 mb-16 border border-neon-purple/30 bg-gradient-to-r from-neon-purple/10 via-transparent to-neon-cyan/10"
         >
           <p className="font-inter text-center text-muted-foreground leading-relaxed max-w-4xl mx-auto">
-            Мы разработали <span className="text-primary font-semibold">патентованную многослойную архитектуру</span>, которая наделяет LLM (большие языковые модели) агентностью, памятью и целеполаганием. Мы не используем готовые чат-интерфейсы — мы строим <span className="text-neon-green font-semibold">принципиально новый класс цифровых сущностей</span>.
+            {t('technology.key_message')}
           </p>
         </motion.div>
 
@@ -367,10 +367,10 @@ export const TechSection = () => {
           className="glass-card rounded-2xl p-6 md:p-8 border border-border/50 mb-12"
         >
           <h3 className="font-orbitron text-xl md:text-2xl font-bold text-foreground mb-4 text-center">
-            Технологический стек
+            {t('technology.tech_stack.title')}
           </h3>
           <p className="font-inter text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed">
-            Мы строим на передовых LLM (OpenAI GPT, Anthropic Claude, open-source решения), но наша ценность — в слоях агентной логики, продвинутой инженерии промптов (prompt/AGI chaining) и системе оркестрации, которые являются <span className="text-primary">нашей интеллектуальной собственностью</span>.
+            {t('technology.tech_stack.content')}
           </p>
         </motion.div>
 
@@ -383,32 +383,14 @@ export const TechSection = () => {
           className="text-center mb-12"
         >
           <div className="inline-block glass-card rounded-2xl p-6 md:p-8 border border-neon-green/30 bg-gradient-to-br from-neon-green/10 to-transparent">
-            <h4 className="font-orbitron text-lg md:text-xl font-bold text-foreground mb-3">Результат</h4>
+            <h4 className="font-orbitron text-lg md:text-xl font-bold text-foreground mb-3">{t('technology.result.title')}</h4>
             <p className="font-inter text-muted-foreground max-w-2xl">
-              Мы поставляем не «чат-ботов», а готовые, <span className="text-neon-green font-semibold">автономные, контекстно-зависимые ИИ-решения</span>, которые можно интегрировать в любой продукт, образовательный курс или цифровую среду.
+              {t('technology.result.content')}
             </p>
           </div>
         </motion.div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.7 }}
-          className="text-center"
-        >
-          <a 
-            href="#subscribe" 
-            className="btn-neural inline-flex items-center gap-3 text-base md:text-lg"
-          >
-            <span>Обсудить с нашими инженерами</span>
-            <ArrowRight className="w-5 h-5" />
-          </a>
-          <p className="font-inter text-sm text-muted-foreground mt-4">
-            Хотите создать такого агента для своей задачи?
-          </p>
-        </motion.div>
+    
       </div>
     </section>
   );

@@ -1,8 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { Building2, GraduationCap, Code2, ChevronRight, Sparkles, Target, Lightbulb } from 'lucide-react';
+import { Building2, GraduationCap, Code2, ChevronRight, Sparkles, Target, Lightbulb, MessageCircle, Heart, BookOpen, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AnimatedGradientText, AnimatedText } from './AnimatedText';
+import { useLocalization } from '@/contexts/LocalizationContext';
 
 interface AudienceCardProps {
   icon: React.ReactNode;
@@ -13,9 +14,10 @@ interface AudienceCardProps {
   accentGradient: string;
   iconBg: string;
   glowColor: string;
+  t: (key: string) => string;
 }
 
-const AudienceCard = ({ icon, title, problem, solution, index, accentGradient, iconBg, glowColor }: AudienceCardProps) => {
+const AudienceCard = ({ icon, title, problem, solution, index, accentGradient, iconBg, glowColor, t }: AudienceCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -152,7 +154,7 @@ const AudienceCard = ({ icon, title, problem, solution, index, accentGradient, i
                   <div className="flex items-center gap-2 mb-3">
                     <Target className="w-5 h-5 text-destructive" />
                     <span className="font-orbitron text-sm font-semibold text-destructive uppercase tracking-wider">
-                      Проблема
+                      {t('audience.problem_label')}
                     </span>
                   </div>
                   <p className="font-inter text-muted-foreground leading-relaxed pl-7">
@@ -165,7 +167,7 @@ const AudienceCard = ({ icon, title, problem, solution, index, accentGradient, i
                   <div className="flex items-center gap-2 mb-3">
                     <Lightbulb className="w-5 h-5 text-neon-green" />
                     <span className="font-orbitron text-sm font-semibold text-neon-green uppercase tracking-wider">
-                      Наше решение
+                      {t('audience.solution_label')}
                     </span>
                   </div>
                   <p className="font-inter text-foreground/90 leading-relaxed pl-7">
@@ -186,39 +188,60 @@ const AudienceCard = ({ icon, title, problem, solution, index, accentGradient, i
   );
 };
 
+const getAudiences = (t: (key: string) => string) => [
+  {
+    icon: <BookOpen className="w-8 h-8 text-white" />,
+    title: t('audience.cards.0.title'),
+    problem: t('audience.cards.0.problem'),
+    solution: t('audience.cards.0.solution'),
+    accentGradient: "bg-gradient-to-r from-blue-500 via-blue-500/50 to-transparent",
+    iconBg: "bg-gradient-to-br from-blue-500 to-blue-500/70",
+    glowColor: "bg-blue-500/30",
+  },
+  {
+    icon: <Lightbulb className="w-8 h-8 text-white" />,
+    title: t('audience.cards.1.title'),
+    problem: t('audience.cards.1.problem'),
+    solution: t('audience.cards.1.solution'),
+    accentGradient: "bg-gradient-to-r from-yellow-500 via-yellow-500/50 to-transparent",
+    iconBg: "bg-gradient-to-br from-yellow-500 to-yellow-500/70",
+    glowColor: "bg-yellow-500/30",
+  },
+  {
+    icon: <Heart className="w-8 h-8 text-white" />,
+    title: t('audience.cards.2.title'),
+    problem: t('audience.cards.2.problem'),
+    solution: t('audience.cards.2.solution'),
+    accentGradient: "bg-gradient-to-r from-pink-500 via-pink-500/50 to-transparent",
+    iconBg: "bg-gradient-to-br from-pink-500 to-pink-500/70",
+    glowColor: "bg-pink-500/30",
+  },
+  {
+    icon: <GraduationCap className="w-8 h-8 text-white" />,
+    title: t('audience.cards.3.title'),
+    problem: t('audience.cards.3.problem'),
+    solution: t('audience.cards.3.solution'),
+    accentGradient: "bg-gradient-to-r from-green-500 via-green-500/50 to-transparent",
+    iconBg: "bg-gradient-to-br from-green-500 to-green-500/70",
+    glowColor: "bg-green-500/30",
+  },
+  {
+    icon: <Users className="w-8 h-8 text-white" />,
+    title: t('audience.cards.4.title'),
+    problem: t('audience.cards.4.problem'),
+    solution: t('audience.cards.4.solution'),
+    accentGradient: "bg-gradient-to-r from-purple-500 via-purple-500/50 to-transparent",
+    iconBg: "bg-gradient-to-br from-purple-500 to-purple-500/70",
+    glowColor: "bg-purple-500/30",
+  },
+];
+
 export const AudienceSection = () => {
-const audiences = [
-    {
-      icon: <Building2 className="w-8 h-8 text-white" />,
-      title: "Корпорации",
-      problem: "Статические тренинги и симуляции не дают реалистичного опыта и обратной связи.",
-      solution: "Агенты как «цифровые коллеги» и «клиенты» для отработки переговоров, продаж и управления в динамичных, адаптивных сценариях.",
-      accentGradient: "bg-gradient-to-r from-neon-cyan via-neon-cyan/50 to-transparent",
-      iconBg: "bg-gradient-to-br from-neon-cyan to-neon-cyan/70",
-      glowColor: "bg-neon-cyan/30",
-    },
-    {
-      icon: <GraduationCap className="w-8 h-8 text-white" />,
-      title: "Образовательные платформы",
-      problem: "Онлайн-обучение часто пассивно и не учитывает индивидуальный контекст ученика.",
-      solution: "Агенты как персональные наставники и интерактивные «персонажи-знания», которые учат через диалог, а не монолог.",
-      accentGradient: "bg-gradient-to-r from-neon-purple via-neon-purple/50 to-transparent",
-      iconBg: "bg-gradient-to-br from-neon-purple to-neon-purple/70",
-      glowColor: "bg-neon-purple/30",
-    },
-    {
-      icon: <Code2 className="w-8 h-8 text-white" />,
-      title: "Креаторы и разработчики",
-      problem: "Создание умных, запоминающихся цифровых персонажей или сложных диалоговых систем требует огромных ресурсов и экспертизы.",
-      solution: "Наш движок — это инфраструктура для быстрого создания и внедрения глубоких, автономных агентов в любые продукты и миры.",
-      accentGradient: "bg-gradient-to-r from-neon-green via-neon-green/50 to-transparent",
-      iconBg: "bg-gradient-to-br from-neon-green to-neon-green/70",
-      glowColor: "bg-neon-green/30",
-    },
-  ];
+  const { t } = useLocalization();
+  const audiences = getAudiences(t);
 
   return (
-    <section id="audience" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="audience" className="relative py-24 md:py-32 overflow-x-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 grid-bg opacity-20" />
       <motion.div 
@@ -254,7 +277,7 @@ const audiences = [
             transition={{ delay: 0.1, type: "spring", stiffness: 150 }}
             className="inline-block px-4 py-2 rounded-full border border-neon-purple/30 bg-neon-purple/5 text-neon-purple text-sm font-medium mb-6"
           >
-            Аудитория
+            {t('audience.title')}
           </motion.span>
           
           <motion.div 
@@ -265,7 +288,7 @@ const audiences = [
             className="mb-6"
           >
             <h2 className="font-orbitron text-3xl md:text-5xl lg:text-6xl font-bold">
-              <AnimatedGradientText text="Для кого это?" delay={0.2} />
+              <AnimatedGradientText text={t('audience.subtitle')} delay={0.2} />
             </h2>
           </motion.div>
           
@@ -276,14 +299,14 @@ const audiences = [
             transition={{ delay: 0.3, duration: 0.6 }}
             className="font-inter text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
           >
-            Наша технология создаёт новый класс цифровых сущностей. Мы решаем задачи там, где требуется не просто ответ, а <span className="text-primary font-medium">осмысленный диалог</span>, <span className="text-neon-purple font-medium">управляемая симуляция</span> или <span className="text-neon-green font-medium">живое взаимодействие</span>.
+            {t('audience.description')}
           </motion.p>
         </motion.div>
 
         {/* Audience cards */}
         <div className="max-w-4xl mx-auto space-y-6">
           {audiences.map((audience, index) => (
-            <AudienceCard key={index} {...audience} index={index} />
+            <AudienceCard key={index} {...audience} index={index} t={t} />
           ))}
         </div>
 
@@ -295,7 +318,7 @@ const audiences = [
           transition={{ delay: 0.8 }}
           className="text-center mt-12 font-inter text-sm text-muted-foreground"
         >
-          Нажмите на карточку, чтобы узнать больше
+          {t('audience.cta')}
         </motion.p>
       </div>
     </section>

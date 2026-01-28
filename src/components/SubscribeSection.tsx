@@ -3,21 +3,25 @@ import { useRef, useState } from 'react';
 import { Mail, Check, Sparkles, BookOpen, FlaskConical, Palette, Briefcase } from 'lucide-react';
 import { toast } from 'sonner';
 import { AnimatedText, AnimatedGradientText } from './AnimatedText';
+import { useLocalization } from '@/contexts/LocalizationContext';
 
-const interests = [
-  { id: 'history', label: 'История', icon: BookOpen },
-  { id: 'science', label: 'Наука', icon: FlaskConical },
-  { id: 'creativity', label: 'Творчество', icon: Palette },
-  { id: 'business', label: 'Бизнес', icon: Briefcase },
+const getInterests = (t: (key: string) => string) => [
+  { id: 'history', label: t('subscribe.interests.0.label'), icon: BookOpen },
+  { id: 'science', label: t('subscribe.interests.1.label'), icon: FlaskConical },
+  { id: 'creativity', label: t('subscribe.interests.2.label'), icon: Palette },
+  { id: 'business', label: t('subscribe.interests.3.label'), icon: Briefcase },
 ];
 
 export const SubscribeSection = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const { t } = useLocalization();
   const [email, setEmail] = useState('');
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  const interests = getInterests(t);
 
   const toggleInterest = (id: string) => {
     setSelectedInterests((prev) =>
@@ -68,11 +72,11 @@ export const SubscribeSection = () => {
           </motion.div>
 
           <h2 className="font-orbitron text-3xl md:text-5xl font-bold mb-6">
-            <AnimatedText text="Станьте исследователем" delay={0} />{' '}
-            <AnimatedGradientText text="первым" delay={0.6} />
+            <AnimatedText text={t('subscribe.title').split(' ')[0]} delay={0} />{' '}
+            <AnimatedGradientText text={t('subscribe.title').split(' ').slice(1).join(' ')} delay={0.6} />
           </h2>
           <p className="font-inter text-muted-foreground text-lg mb-12">
-            <AnimatedText text="Подпишитесь, чтобы получить уведомление о запуске каждой новой вселенной и эксклюзивный доступ к бета-тестам." delay={0.8} staggerChildren={0.01} />
+            <AnimatedText text={t('subscribe.subtitle')} delay={0.8} staggerChildren={0.01} />
           </p>
 
           {!isSubmitted ? (
@@ -91,7 +95,7 @@ export const SubscribeSection = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Введите ваш email"
+                    placeholder={t('subscribe.placeholder')}
                     required
                     className="flex-1 bg-muted/80 border border-border rounded-xl px-6 py-4 font-inter text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                   />
@@ -103,10 +107,10 @@ export const SubscribeSection = () => {
                     {isSubmitting ? (
                       <span className="flex items-center gap-2">
                         <Sparkles className="w-5 h-5 animate-spin" />
-                        Отправка...
+                        {t('subscribe.sending')}
                       </span>
                     ) : (
-                      'Подписаться на запуск'
+                      t('subscribe.button')
                     )}
                   </button>
                 </div>
@@ -120,7 +124,7 @@ export const SubscribeSection = () => {
                 transition={{ delay: 0.4, duration: 0.6 }}
               >
                 <p className="font-inter text-sm text-muted-foreground">
-                  Выберите интересующие направления:
+                  {t('subscribe.interests_title')}
                 </p>
                 <div className="flex flex-wrap gap-3 justify-center">
                   {interests.map((interest, index) => {

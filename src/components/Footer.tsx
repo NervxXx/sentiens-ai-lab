@@ -1,39 +1,44 @@
 import { motion } from 'framer-motion';
-import { Github, Twitter, Linkedin, MessageCircle, Mail, MapPin, Zap, Heart, Sparkles } from 'lucide-react';
+import { Twitter, Linkedin, Youtube, Instagram, Mail, MapPin, Zap, Heart, Sparkles } from 'lucide-react';
 import logo from '@/assets/logo.png';
+import { useLocalization } from '@/contexts/LocalizationContext';
 
-const socialLinks = [
-  { icon: Github, href: '#', label: 'GitHub' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: MessageCircle, href: '#', label: 'Discord' },
+const getSocialLinks = (t: (key: string) => string) => [
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/sentiens-apps', label: t('footer.social.items.0.label') },
+  { icon: Twitter, href: 'https://x.com/SentiensApps', label: t('footer.social.items.1.label') },
+  { icon: Youtube, href: 'https://www.youtube.com/@SentiensApps', label: t('footer.social.items.2.label') },
+  { icon: Instagram, href: 'https://www.instagram.com/sentiensapps/', label: t('footer.social.items.3.label') },
 ];
 
-const footerLinks = {
+const getFooterLinks = (t: (key: string) => string) => ({
   product: [
-    { label: 'Epochal Dialog', href: '#' },
-    { label: 'MathMind', href: '#' },
-    { label: 'Canvas Weaver', href: '#' },
-    { label: 'Verba', href: '#' },
+    { label: t('footer.product.items.0.label'), href: t('footer.product.items.0.href') },
+    { label: t('footer.product.items.1.label'), href: t('footer.product.items.1.href') },
+    { label: t('footer.product.items.2.label'), href: t('footer.product.items.2.href') },
+    { label: t('footer.product.items.3.label'), href: t('footer.product.items.3.href') },
   ],
   company: [
-    { label: 'О нас', href: '#' },
-    { label: 'Блог', href: '#' },
-    { label: 'Вакансии', href: '#' },
-    { label: 'Контакты', href: '#' },
+    { label: t('footer.company.items.0.label'), href: t('footer.company.items.0.href') },
+    { label: t('footer.company.items.1.label'), href: t('footer.company.items.1.href') },
+    { label: t('footer.company.items.2.label'), href: t('footer.company.items.2.href') },
+    { label: t('footer.company.items.3.label'), href: t('footer.company.items.3.href') },
   ],
   legal: [
-    { label: 'Политика конфиденциальности', href: '#' },
-    { label: 'Условия использования', href: '#' },
-    { label: 'Cookies', href: '#' },
+    { label: t('footer.legal.items.0.label'), href: t('footer.legal.items.0.href') },
+    { label: t('footer.legal.items.1.label'), href: t('footer.legal.items.1.href') },
+    { label: t('footer.legal.items.2.label'), href: t('footer.legal.items.2.href') },
   ],
-};
+});
 
 export const Footer = () => {
+  const { t } = useLocalization();
   const currentYear = new Date().getFullYear();
+  
+  const socialLinks = getSocialLinks(t);
+  const footerLinks = getFooterLinks(t);
 
   return (
-    <footer className="relative pt-24 pb-8 overflow-hidden">
+    <footer className="relative pt-24 pb-8">
       {/* Neural grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,243,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,243,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
       
@@ -56,7 +61,7 @@ export const Footer = () => {
             >
               <div className="relative">
                 <div className="w-12 h-12 rounded-2xl overflow-hidden bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 p-0.5">
-                  <img src={logo} alt="SentiensApps Logo" className="w-full h-full object-contain rounded-xl" />
+                  <img src={logo} alt={t('footer.logo_alt')} className="w-full h-full object-contain rounded-xl" />
                 </div>
                 <div className="absolute inset-0 rounded-2xl bg-neon-cyan/30 blur-xl opacity-0 group-hover:opacity-80 transition-opacity" />
               </div>
@@ -66,22 +71,22 @@ export const Footer = () => {
             </motion.a>
             
             <p className="font-inter text-muted-foreground mb-6 max-w-sm leading-relaxed">
-              Создаем интеллектуальные приложения, которые меняют способ взаимодействия человека с технологиями.
+              {t('footer.description')}
             </p>
 
             {/* Contact info */}
             <div className="space-y-3">
-              <a href="mailto:hello@sentiensapps.com" className="flex items-center gap-3 text-muted-foreground hover:text-neon-cyan transition-colors group">
+              <a href={`mailto:${t('footer.email')}`} className="flex items-center gap-3 text-muted-foreground hover:text-neon-cyan transition-colors group">
                 <div className="w-8 h-8 rounded-lg glass-card flex items-center justify-center group-hover:border-neon-cyan/30">
                   <Mail className="w-4 h-4" />
                 </div>
-                <span className="font-inter text-sm">hello@sentiensapps.com</span>
+                <span className="font-inter text-sm">{t('footer.email')}</span>
               </a>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <div className="w-8 h-8 rounded-lg glass-card flex items-center justify-center">
                   <MapPin className="w-4 h-4" />
                 </div>
-                <span className="font-inter text-sm">Москва, Россия</span>
+                <span className="font-inter text-sm">{t('footer.location')}</span>
               </div>
             </div>
           </div>
@@ -90,7 +95,7 @@ export const Footer = () => {
           <div className="lg:col-span-2">
             <h4 className="font-orbitron font-semibold text-sm uppercase tracking-wider text-foreground mb-6 flex items-center gap-2">
               <Zap className="w-4 h-4 text-neon-cyan" />
-              Продукты
+              {t('footer.product.title')}
             </h4>
             <ul className="space-y-3">
               {footerLinks.product.map((link) => (
@@ -133,7 +138,7 @@ export const Footer = () => {
 
           <div className="lg:col-span-2">
             <h4 className="font-orbitron font-semibold text-sm uppercase tracking-wider text-foreground mb-6">
-              Правовая информация
+              {t('footer.legal.title')}
             </h4>
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
@@ -152,7 +157,7 @@ export const Footer = () => {
           {/* Social column */}
           <div className="lg:col-span-2">
             <h4 className="font-orbitron font-semibold text-sm uppercase tracking-wider text-foreground mb-6">
-              Социальные сети
+              {t('footer.social.title')}
             </h4>
             <div className="grid grid-cols-2 gap-3">
               {socialLinks.map((social) => (
@@ -191,23 +196,23 @@ export const Footer = () => {
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-inter text-sm text-muted-foreground">
-            © {currentYear} SentiensApps. Выращиваем интеллект.
+            {t('footer.copyright')}
           </p>
           
           <div className="flex items-center gap-2 text-muted-foreground">
-            <span className="font-inter text-xs">Создано с</span>
+            <span className="font-inter text-xs">{t('footer.made_with')}</span>
             <motion.div
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             >
               <Heart className="w-4 h-4 text-neon-cyan" />
             </motion.div>
-            <span className="font-inter text-xs">и искусственным интеллектом</span>
+            <span className="font-inter text-xs">{t('footer.and_ai')}</span>
           </div>
 
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
-            <span className="font-inter text-xs text-muted-foreground">Все системы работают</span>
+            <span className="font-inter text-xs text-muted-foreground">{t('footer.systems_operational')}</span>
           </div>
         </div>
       </div>

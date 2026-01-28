@@ -1,0 +1,239 @@
+{
+  "navigation": {
+    "philosophy": "Philosophy",
+    "technology": "Technology",
+    "universes": "Universes",
+    "audience": "Audience"
+  },
+  "hero": {
+    "title": "The New Era of Artificial Intelligence",
+    "subtitle": "The Age of Agent-Driven Applications. Purposeful Intelligence.",
+    "description": "SentiensApps is an ecosystem of applications where each neural network becomes your tool for learning, dialogue, and problem-solving.",
+    "cta_primary": "Explore Universes",
+    "cta_secondary": "Learn More"
+  },
+  "philosophy": {
+    "core_title": "The Sentiens Core",
+    "title": "The Sentiens Philosophy",
+    "subtitle": "Three principles that define every decision we make and every line of code we write.",
+    "pillars": [
+      {
+        "title": "Profound Meaning",
+        "description": "We create not just chatbots, but holistic personalities and specialized intelligences."
+      },
+      {
+        "title": "Flawless Utility",
+        "description": "Every application solves a specific task — from learning to creativity."
+      },
+      {
+        "title": "Living Ecosystem",
+        "description": "All our applications are built on a common technological foundation, ensuring the stability, security, and continuous evolution of each one."
+      }
+    ]
+  },
+  "technology": {
+    "badge": "Core Technologies",
+    "title": "The Sentiens Engine",
+    "subtitle": "Architecture of Consciousness",
+    "description": "A technological platform that transforms language models into autonomous, purposeful, and trainable agents.",
+    "key_message": "Our development is a thoughtful architecture that turns large language models (LLMs) into more capable and useful agents. We equip them with memory of past interactions, the ability to set goals within tasks, and unique personality traits. Our aim is to move beyond simple chat.",
+    "pillars": [
+      {
+        "title": "Agent Core",
+        "subtitle": "Agency Layer",
+        "preview": "Decision-making core: Each of our agents operates through an autonomous cycle: Perception → Context Analysis → Planning → Action → Memory Storage.",
+        "fullContent": {
+          "dynamic_goals": {
+            "title": "Dynamic Goal Setting",
+            "content": "Agents don't just respond to requests. They formulate and adjust short-term and long-term goals within a given mission: to educate a user, support research, or solve a problem."
+          },
+          "tools": {
+            "title": "Toolkit (Tools)",
+            "content": "Agents can safely interact with external systems: retrieve data, perform calculations, manage environmental elements."
+          }
+        }
+      },
+      {
+        "title": "Mnemosyne Layer",
+        "subtitle": "Layer of Memory and Context",
+        "preview": "We go beyond the short context window. An agent possesses working, long-term, and procedural memory.",
+        "fullContent": {
+          "memory_types": {
+            "title": "Vector and Hierarchical Memory",
+            "content": "Working Memory — the flow of the current dialogue\nLong-term Memory — a vector knowledge base about the world and interaction history\nProcedural Memory — memorized successful behavior patterns and solutions"
+          },
+          "self_vectorization": {
+            "title": "Self-vectorization of Experience",
+            "content": "A key innovation. The agent automatically analyzes and stores the essence of each interaction into its memory, forming a constantly growing \"personality\" and experience base."
+          }
+        }
+      },
+      {
+        "title": "Persona Framework",
+        "subtitle": "Behavior and Role Model Layer",
+        "preview": "Not just a prompt: This is a complex system of constraints, values, vocabulary, and communication styles.",
+        "fullContent": {
+          "deep_role": {
+            "title": "Deep Role Model",
+            "content": "The system \"dresses\" the base model in a coherent and profound role, creating a unique digital personality with a consistent character."
+          },
+          "adaptive_behavior": {
+            "title": "Adaptive Behavior",
+            "content": "The model can adjust its tone, depth of explanations, and interaction strategy depending on the user and context."
+          }
+        }
+      },
+      {
+        "title": "Multi-Agent Orchestration",
+        "subtitle": "Collaboration Layer",
+        "preview": "Our platform allows for the creation of not just individual bots, but ecosystems of interacting agents.",
+        "fullContent": {
+          "sync_worlds": {
+            "title": "Synchronized Worlds",
+            "content": "Agents can exchange messages, request assistance, challenge each other's arguments, or collaboratively solve complex problems."
+          },
+          "swarm_intelligence": {
+            "title": "Swarm Intelligence",
+            "content": "In certain scenarios, a group of agents managed by an orchestrator can solve tasks beyond the capability of a single model."
+          }
+        }
+      }
+    ],
+    "result": {
+      "title": "The Result",
+      "content": "We deliver not \"chatbots,\" but ready-to-use, autonomous, context-aware AI solutions that can be integrated into any product, educational course, or digital environment."
+    },
+    "tech_stack": {
+      "title": "Technology Stack",
+      "content": "We build on leading LLMs (OpenAI GPT, Anthropic Claude, DeepSeek, open-source solutions), but our value lies in the layers of agent logic, advanced prompt engineering (prompt/AGI chaining), and orchestration systems that are our intellectual property."
+    }
+  },
+  "audience": {
+    "title": "Audience",
+    "subtitle": "Who is this for?",
+    "description": "Our technology creates a new class of digital entities. We solve problems where a simple answer is not enough—where meaningful dialogue, guided simulation, or live interaction is required.",
+    "problem_label": "Problem",
+    "solution_label": "Our Solution",
+    "cards": [
+      {
+        "title": "For Educational Platforms",
+        "problem": "Online learning is often passive and does not account for the individual context of the student.",
+        "solution": "Agents as personal mentors and interactive \"knowledge characters\" that teach through dialogue, not monologue."
+      },
+      {
+        "title": "For Those Seeking Inspiration and Dialogue",
+        "problem": "Text and voice interfaces remain impersonal. They lack the depth, context, and character needed for substantive communication, creativity, or intellectual debate.",
+        "solution": "Agents as conversational partners and co-creators. They sustain deep topics, remember the flow of conversation, offer unexpected perspectives, and communicate within the framework of a vivid, consistent personality."
+      },
+      {
+        "title": "For Those Who Value Personalization and Depth",
+        "problem": "One-off chat sessions do not accumulate interaction experience. Each dialogue starts from a blank slate, without considering your history, goals, and preferences.",
+        "solution": "Agents that learn with you. They remember context, adapt their communication style, and over time become truly \"yours\"—understanding digital companions."
+      },
+      {
+        "title": "For Those Who Learn and Grow",
+        "problem": "Standard courses and learning materials are static and do not adapt to your pace, knowledge gaps, and learning style. There is no patient mentor to guide you along an individual path.",
+        "solution": "Your personal AI mentor. An agent that assesses your current level, remembers your mistakes, adjusts difficulty, and builds a personalized path to mastery—whether it's a language, a skill, or an entire field of knowledge."
+      },
+      {
+        "title": "For Everyone Ready for a New Format of Interaction with Technology",
+        "problem": "Most interfaces are impersonal. You communicate with an algorithm that doesn't remember past conversations and lacks character, making the dialogue superficial and technical.",
+        "solution": "Meet an AI with individuality. A digital entity you want to have a conversation with. Our agents are not just programs, but interlocutors with character, memory, and their own manner of communication, turning interaction into something truly alive and engaging."
+      }
+    ],
+    "cta": "Click on a card to learn more"
+  },
+  "universes": {
+    "title": "Our Universes",
+    "subtitle": "Portals to New Possibilities",
+    "tags": {
+      "history": "History",
+      "education": "Education",
+      "ai_personalities": "AI Personalities"
+    },
+    "main_app": {
+      "name": "Epochal Dialog",
+      "description": "Immerse yourself in dialogues with history's greatest minds. From Socrates to Einstein, unite them into groups, create your own characters — every conversation transforms your understanding of the world.",
+      "cta": "Enter the Era"
+    },
+    "upcoming": [
+      {
+        "name": "TalkTrainer lab",
+        "description": "Simulators powered by deep agents.",
+        "status": "Coming Soon"
+      },
+      {
+        "name": "TemplateFly",
+        "description": "Photos transformed by AI using a selected template.",
+        "status": "Coming Soon"
+      },
+      {
+        "name": "LeapLingo",
+        "description": "An interactive English teacher with multiple modes.",
+        "status": "Coming Soon"
+      }
+    ],
+    "coming_soon": "New universes are in the launch stage. Stay tuned for updates."
+  },
+  "subscribe": {
+    "title": "Become the First Explorer",
+    "subtitle": "Subscribe to get notified about each new universe launch and gain exclusive beta access.",
+    "placeholder": "Enter your email",
+    "button": "Subscribe to Launch",
+    "sending": "Sending...",
+    "interests_title": "Select areas of interest:",
+    "interests": [
+      { "id": "history", "label": "History" },
+      { "id": "science", "label": "Science" },
+      { "id": "creativity", "label": "Creativity" },
+      { "id": "business", "label": "Business" }
+    ],
+    "success": "Thank you for subscribing!",
+    "error": "An error occurred. Please try again."
+  },
+  "footer": {
+    "logo_alt": "SentiensApps Logo",
+    "description": "We create intelligent applications that change the way humans interact with technology.",
+    "email": "sentiensapps@gmail.com",
+    "location": "Minsk, Belarus",
+    "product": {
+      "title": "Products",
+      "items": [
+        { "label": "Epochal Dialog", "href": "#" },
+        { "label": "TalkTrainer lab", "href": "#" },
+        { "label": "TemplateFly", "href": "#" },
+        { "label": "LeapLingo", "href": "#" }
+      ]
+    },
+    "company": {
+      "title": "Company",
+      "items": [
+        { "label": "Philosophy", "href": "#philosophy" },
+        { "label": "Technology", "href": "#technology" },
+        { "label": "Audience", "href": "#audience" },
+        { "label": "Universes", "href": "#universes" }
+      ]
+    },
+    "legal": {
+      "title": "Legal",
+      "items": [
+        { "label": "Privacy Policy", "href": "#" },
+        { "label": "Terms of Use", "href": "#" },
+        { "label": "Cookies", "href": "#" }
+      ]
+    },
+    "social": {
+      "title": "Social Media",
+      "items": [
+        { "label": "LinkedIn", "href": "https://www.linkedin.com/in/sentiens-apps" },
+        { "label": "X (Twitter)", "href": "https://x.com/SentiensApps" },
+        { "label": "YouTube", "href": "https://www.youtube.com/@SentiensApps" },
+        { "label": "Instagram", "href": "https://www.instagram.com/sentiensapps/" }
+      ]
+    },
+    "copyright": "© 2026 SentiensApps. Cultivating intelligence.",
+    "made_with": "Created with",
+    "and_ai": "and artificial intelligence",
+    "systems_operational": "All systems operational"
+  }
+}

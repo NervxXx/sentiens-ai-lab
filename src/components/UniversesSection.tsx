@@ -2,35 +2,40 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Clock, Calculator, Palette, MessageCircle, ArrowRight, Lock, Zap } from 'lucide-react';
 import { AnimatedText, AnimatedGradientText } from './AnimatedText';
+import { useLocalization } from '@/contexts/LocalizationContext';
 
-const mainApp = {
+const getMainApp = (t: (key: string) => string) => ({
   id: 'epochal-dialog',
-  name: 'Epochal Dialog',
-  description: 'Погрузитесь в диалоги с величайшими умами истории. От Сократа до Эйнштейна — каждая беседа меняет ваше понимание мира.',
+  name: t('universes.main_app.name'),
+  description: t('universes.main_app.description'),
   icon: Clock,
   status: 'active',
-  tags: ['История', 'Образование', 'ИИ-личности'],
-};
+  tags: [
+    t('universes.tags.history'),
+    t('universes.tags.education'),
+    t('universes.tags.ai_personalities'),
+  ],
+});
 
-const upcomingApps = [
+const getUpcomingApps = (t: (key: string) => string) => [
   {
-    id: 'mathmind',
-    name: 'MathMind',
-    description: 'Ваш ИИ-наставник по точным наукам',
+    id: 'TalkTrainer-lab',
+    name: t('universes.upcoming.0.name'),
+    description: t('universes.upcoming.0.description'),
     icon: Calculator,
     status: 'coming',
   },
   {
-    id: 'canvas-weaver',
-    name: 'Canvas Weaver',
-    description: 'Соавтор в генеративном искусстве',
+    id: 'TemplateFly',
+    name: t('universes.upcoming.1.name'),
+    description: t('universes.upcoming.1.description'),
     icon: Palette,
     status: 'coming',
   },
   {
-    id: 'verba',
-    name: 'Verba',
-    description: 'Мастер языка и переговоров',
+    id: 'LeapLingo',
+    name: t('universes.upcoming.2.name'),
+    description: t('universes.upcoming.2.description'),
     icon: MessageCircle,
     status: 'coming',
   },
@@ -39,9 +44,13 @@ const upcomingApps = [
 export const UniversesSection = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const { t } = useLocalization();
+  
+  const mainApp = getMainApp(t);
+  const upcomingApps = getUpcomingApps(t);
 
   return (
-    <section id="universes" ref={sectionRef} className="relative py-32 overflow-hidden">
+    <section id="universes" ref={sectionRef} className="relative py-32 overflow-x-hidden">
       <div className="section-container relative z-10">
         {/* Section header */}
         <motion.div
@@ -51,11 +60,11 @@ export const UniversesSection = () => {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1 rounded-full text-sm font-inter text-neon-green border border-neon-green/30 mb-6">
-            Наши вселенные
+            {t('universes.title')}
           </span>
           <h2 className="font-orbitron text-3xl md:text-5xl font-bold mb-6">
-            <AnimatedText text="Порталы в новые" delay={0} />{' '}
-            <AnimatedGradientText text="возможности" delay={0.5} />
+            <AnimatedText text={t('universes.subtitle').split(' ')[0]} delay={0} />{' '}
+            <AnimatedGradientText text={t('universes.subtitle').split(' ').slice(1).join(' ')} delay={0.5} />
           </h2>
         </motion.div>
 
@@ -128,7 +137,7 @@ export const UniversesSection = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Войти в эпоху
+                  {t('universes.main_app.cta')}
                   <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
                 </motion.a>
               </div>
@@ -151,7 +160,7 @@ export const UniversesSection = () => {
             transition={{ delay: 0.5 }}
             className="text-center font-inter text-muted-foreground mb-8"
           >
-            Новые вселенные на стадии запуска. Следите за обновлениями.
+            {t('universes.coming_soon')}
           </motion.p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {upcomingApps.map((app, index) => (
@@ -183,7 +192,7 @@ export const UniversesSection = () => {
                       transition={{ delay: 0.1 }}
                     >
                       <Lock className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
-                      <span className="text-sm font-inter text-muted-foreground">Скоро</span>
+                      <span className="text-sm font-inter text-muted-foreground">{t('universes.upcoming.0.status')}</span>
                     </motion.div>
                   </motion.div>
 

@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Zap, Brain, Sparkles } from 'lucide-react';
 import { AnimatedText, AnimatedGradientText } from './AnimatedText';
+import { useLocalization } from '@/contexts/LocalizationContext';
 
 export const HeroSection = () => {
+  const { t } = useLocalization();
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
       {/* Central glowing orb */}
@@ -24,26 +26,26 @@ export const HeroSection = () => {
         <div className="absolute inset-36 rounded-full border border-neon-cyan/10" />
       </motion.div>
 
-      <div className="section-container relative z-10">
+      <div className="section-container relative z-10 overflow-hidden">
         <div className="max-w-4xl mx-auto text-center">
           {/* Floating icons */}
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <motion.div
-              className="absolute top-20 left-10 md:left-20"
+              className="absolute top-20 left-4 md:left-20"
               animate={{ y: [-10, 10, -10], rotate: [0, 10, 0] }}
               transition={{ duration: 5, repeat: Infinity }}
             >
               <Brain className="w-8 h-8 text-neon-cyan/40" />
             </motion.div>
             <motion.div
-              className="absolute top-32 right-10 md:right-20"
+              className="absolute top-32 right-4 md:right-20"
               animate={{ y: [10, -10, 10], rotate: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity }}
             >
               <Zap className="w-6 h-6 text-neon-purple/50" />
             </motion.div>
             <motion.div
-              className="absolute bottom-32 left-16"
+              className="absolute bottom-32 left-8 md:left-16"
               animate={{ y: [-5, 15, -5] }}
               transition={{ duration: 6, repeat: Infinity }}
             >
@@ -60,20 +62,20 @@ export const HeroSection = () => {
           >
             <span className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
             <span className="text-sm font-inter text-muted-foreground">
-              Новая эра искусственного интеллекта
+              {t('hero.title')}
             </span>
           </motion.div>
 
           {/* Main heading with letter-by-letter animation */}
-          <h1 className="font-orbitron font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight">
+          <h1 className="font-orbitron font-bold text-4xl sm:text-3xl md:text-3xl lg:text-6xl mb-6 leading-tight">
             <span className="block text-foreground">
-              <AnimatedText text="Мы выращиваем" delay={0.3} />
+              <AnimatedText text={t('hero.subtitle').split('.')[0]} delay={0.3} />
             </span>
             <span className="block">
-              <AnimatedGradientText text="интеллект." delay={0.8} />
+              <AnimatedGradientText text={t('hero.subtitle').split('.')[1].trim()} delay={0.8} />
             </span>
             <span className="block text-foreground">
-              <AnimatedText text="Полезный интеллект." delay={1.3} />
+              <AnimatedText text={t('hero.subtitle').split('.')[2]?.trim() || ''} delay={1.3} />
             </span>
           </h1>
 
@@ -84,7 +86,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="font-inter text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12"
           >
-            Семейство приложений, где каждая нейросеть — не игрушка, а инструмент для прорыва.
+            {t('hero.description')}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -95,7 +97,7 @@ export const HeroSection = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <a href="#universes" className="btn-neural flex items-center gap-3 group">
-              Исследовать вселенные
+              {t('hero.cta_primary')}
               <motion.span
                 animate={{ y: [0, 4, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
@@ -104,7 +106,7 @@ export const HeroSection = () => {
               </motion.span>
             </a>
             <a href="#philosophy" className="btn-ghost-neural">
-              Узнать больше
+              {t('hero.cta_secondary')}
             </a>
           </motion.div>
 

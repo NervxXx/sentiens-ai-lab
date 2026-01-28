@@ -52,7 +52,7 @@ export const NeuralBackground = () => {
     const particles = particlesRef.current;
     const mouse = mouseRef.current;
     const connectionDistance = 120;
-    const mouseInfluence = 150;
+    const mouseInfluence = 250;
 
     // Update and draw particles
     particles.forEach((particle, i) => {
@@ -62,7 +62,7 @@ export const NeuralBackground = () => {
       const dist = Math.sqrt(dx * dx + dy * dy);
       
       if (dist < mouseInfluence && dist > 0) {
-        const force = (mouseInfluence - dist) / mouseInfluence * 0.015;
+        const force = (mouseInfluence - dist) / mouseInfluence * 0.03;
         particle.vx += (dx / dist) * force;
         particle.vy += (dy / dist) * force;
       }
