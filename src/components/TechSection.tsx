@@ -131,7 +131,7 @@ const ArchitectureVisual = () => {
           ]
         }}
         transition={{ duration: 3, repeat: Infinity }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-neon-cyan/30 to-neon-purple/20 border border-neon-cyan/50 flex items-center justify-center z-10"
+        className="absolute top-1/3 -translate-x-1/2 -translate-y-1/2 w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-neon-cyan/30 to-neon-purple/20 border border-neon-cyan/50 flex items-center justify-center z-10"
       >
         <Cpu className="w-10 h-10 md:w-14 md:h-14 text-neon-cyan" />
       </motion.div>
