@@ -106,10 +106,10 @@ export const PhilosophySection = () => {
           className="text-center mb-20"
         >
           <span className="inline-block px-4 py-1.5 rounded-full text-sm font-inter text-primary border border-primary/30 mb-6 backdrop-blur-sm bg-primary/5">
-            {t('philosophy.core_title')}
+            Philosophy Core
           </span>
           <h2 className="font-orbitron text-3xl md:text-5xl font-bold mb-6">
-            <AnimatedText text={t('philosophy.title').split(' ')[0]} delay={0} />{' '}
+            <AnimatedText text="Philosophy" delay={0} />{' '}
             <AnimatedGradientText text="Sentiens" delay={0.4} />
           </h2>
           <p className="font-inter text-muted-foreground max-w-xl mx-auto text-lg">
@@ -140,7 +140,7 @@ export const PhilosophySection = () => {
                 />
                 
                 {/* Shimmer effect - CSS transition based */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 md:inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 md:h-full h-[120%] -top-[10%]" />
                 
                 {/* Icon */}
                 <motion.div 

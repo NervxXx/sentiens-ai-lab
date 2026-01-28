@@ -18,10 +18,10 @@ const getFooterLinks = (t: (key: string) => string) => ({
     { label: t('footer.product.items.3.label'), href: t('footer.product.items.3.href') },
   ],
   company: [
-    { label: t('footer.company.items.0.label'), href: t('footer.company.items.0.href') },
-    { label: t('footer.company.items.1.label'), href: t('footer.company.items.1.href') },
-    { label: t('footer.company.items.2.label'), href: t('footer.company.items.2.href') },
-    { label: t('footer.company.items.3.label'), href: t('footer.company.items.3.href') },
+    { label: t('navigation.philosophy'), href: '#philosophy' },
+    { label: t('navigation.technology'), href: '#technology' },
+    { label: t('navigation.audience'), href: '#audience' },
+    { label: t('navigation.universes'), href: '#universes' },
   ],
   legal: [
     { label: t('footer.legal.items.0.label'), href: t('footer.legal.items.0.href') },
@@ -159,7 +159,7 @@ export const Footer = () => {
             <h4 className="font-orbitron font-semibold text-sm uppercase tracking-wider text-foreground mb-6">
               {t('footer.social.title')}
             </h4>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="flex flex-col gap-3">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.label}
@@ -167,10 +167,10 @@ export const Footer = () => {
                   aria-label={social.label}
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl glass-card text-muted-foreground hover:text-neon-cyan hover:border-neon-cyan/30 transition-all duration-300 group"
+                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl glass-card text-muted-foreground hover:text-neon-cyan hover:border-neon-cyan/30 transition-all duration-300 group w-40"
                 >
                   <social.icon className="w-4 h-4" />
-                  <span className="font-inter text-xs">{social.label}</span>
+                  <span className="font-inter text-xs truncate">{social.label}</span>
                 </motion.a>
               ))}
             </div>

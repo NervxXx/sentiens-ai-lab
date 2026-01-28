@@ -60,7 +60,7 @@ export const UniversesSection = () => {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1 rounded-full text-sm font-inter text-neon-green border border-neon-green/30 mb-6">
-            {t('universes.title')}
+            Universes
           </span>
           <h2 className="font-orbitron text-3xl md:text-5xl font-bold mb-6">
             <AnimatedText text={t('universes.subtitle').split(' ')[0]} delay={0} />{' '}
@@ -175,9 +175,9 @@ export const UniversesSection = () => {
                   stiffness: 100
                 }}
                 whileHover={{ y: -8, scale: 1.03 }}
-                className="group"
+                className="group md:pb-20"
               >
-                <div className="glass-card rounded-2xl p-6 h-full relative overflow-hidden border border-border hover:border-primary/30 transition-all duration-500 hover:shadow-lg hover:shadow-primary/5">
+                <div className="glass-card rounded-2xl p-6 h-18 md:h-96 relative overflow-hidden border border-border hover:border-primary/30 transition-all duration-500 hover:shadow-lg hover:shadow-primary/5">
                   {/* Locked overlay with improved animation */}
                   <motion.div 
                     className="absolute inset-0 bg-background/30 backdrop-blur-sm flex items-center justify-center"

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 interface Particle {
@@ -9,11 +9,38 @@ interface Particle {
   radius: number;
 }
 
-export const NeuralBackground = () => {
+const NeuralBackgroundLite = () => {
+  return (
+    <>
+      <div
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{
+          background:
+            'radial-gradient(600px 400px at 20% 10%, rgba(0, 243, 255, 0.10), transparent 60%), radial-gradient(600px 400px at 80% 30%, rgba(142, 45, 226, 0.10), transparent 60%)',
+        }}
+      />
+      <div className="fixed inset-0 pointer-events-none z-0 grid-bg opacity-15" />
+    </>
+  );
+};
+
+const NeuralBackgroundFull = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const animationRef = useRef<number>();
+  
+  // Check screen width for responsive behavior
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 800);
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 800);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Parallax scroll effects - defined at top level
   const { scrollY } = useScroll();
@@ -110,6 +137,11 @@ export const NeuralBackground = () => {
   }, []);
 
   useEffect(() => {
+    // Skip canvas animation on small screens (< 800px)
+    if (isSmallScreen) {
+      return;
+    }
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -157,14 +189,18 @@ export const NeuralBackground = () => {
 
   return (
     <>
-      <canvas
-        ref={canvasRef}
-        className="fixed inset-0 pointer-events-none z-0"
-        style={{ 
-          background: 'transparent',
-          willChange: 'transform',
-        }}
-      />
+      {/* Canvas particles - only on wide screens (>= 800px) */}
+      {!isSmallScreen && (
+        <canvas
+          ref={canvasRef}
+          className="fixed inset-0 pointer-events-none z-0"
+          style={{ 
+            background: 'transparent',
+            willChange: 'transform',
+            transform: 'translateZ(0)', // Hardware acceleration
+          }}
+        />
+      )}
       {/* Parallax gradient overlays */}
       <motion.div
         className="fixed inset-0 pointer-events-none z-0"
@@ -180,19 +216,25 @@ export const NeuralBackground = () => {
           className="absolute top-1/3 right-1/4 w-80 h-80 bg-neon-purple/15 rounded-full blur-[100px]"
           style={{ y: y2, opacity: opacity1, willChange: 'transform, opacity' }}
         />
-        <motion.div 
-          className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-neon-green/10 rounded-full blur-[80px]"
-          style={{ y: y3, willChange: 'transform' }}
-        />
-        {/* Additional parallax orbs */}
-        <motion.div 
-          className="absolute top-[60%] right-[10%] w-64 h-64 bg-neon-cyan/8 rounded-full blur-[100px]"
-          style={{ y: y4, willChange: 'transform' }}
-        />
-        <motion.div 
-          className="absolute top-[80%] left-[15%] w-48 h-48 bg-neon-purple/10 rounded-full blur-[80px]"
-          style={{ y: y5, willChange: 'transform' }}
-        />
+        {!isSmallScreen && (
+          <motion.div 
+            className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-neon-green/10 rounded-full blur-[80px]"
+            style={{ y: y3, willChange: 'transform', transform: 'translateZ(0)' }}
+          />
+        )}
+        {/* Additional parallax orbs - hide some on small screens */}
+        {!isSmallScreen && (
+          <motion.div 
+            className="absolute top-[60%] right-[10%] w-64 h-64 bg-neon-cyan/8 rounded-full blur-[100px]"
+            style={{ y: y4, willChange: 'transform', transform: 'translateZ(0)' }}
+          />
+        )}
+        {!isSmallScreen && (
+          <motion.div 
+            className="absolute top-[80%] left-[15%] w-48 h-48 bg-neon-purple/10 rounded-full blur-[80px]"
+            style={{ y: y5, willChange: 'transform', transform: 'translateZ(0)' }}
+          />
+        )}
       </motion.div>
       {/* Grid overlay with parallax */}
       <motion.div 
@@ -201,4 +243,20 @@ export const NeuralBackground = () => {
       />
     </>
   );
+};
+
+export const NeuralBackground = () => {
+  const [isSmallScreen, setIsSmallScreen] = useState(() => window.innerWidth < 800);
+
+  useEffect(() => {
+    const handleResize = () => setIsSmallScreen(window.innerWidth < 800);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  if (isSmallScreen) {
+    return <NeuralBackgroundLite />;
+  }
+
+  return <NeuralBackgroundFull />;
 };

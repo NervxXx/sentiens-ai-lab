@@ -277,7 +277,7 @@ export const AudienceSection = () => {
             transition={{ delay: 0.1, type: "spring", stiffness: 150 }}
             className="inline-block px-4 py-2 rounded-full border border-neon-purple/30 bg-neon-purple/5 text-neon-purple text-sm font-medium mb-6"
           >
-            {t('audience.title')}
+            Audience
           </motion.span>
           
           <motion.div 

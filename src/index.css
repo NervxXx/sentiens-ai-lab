@@ -269,3 +269,24 @@
     background-size: 50px 50px;
   }
 }
+
+@media (max-width: 767px) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .glass-card {
+    backdrop-filter: none;
+  }
+
+  .pulse-glow,
+  .float,
+  .shimmer {
+    animation: none !important;
+  }
+
+  .btn-neural:hover,
+  .btn-ghost-neural:hover {
+    transform: none;
+  }
+}

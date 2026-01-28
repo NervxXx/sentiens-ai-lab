@@ -314,11 +314,11 @@ export const TechSection = () => {
             transition={{ delay: 0.2 }}
             className="inline-block px-4 py-2 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 text-neon-cyan text-sm font-medium mb-6"
           >
-            {t('technology.badge')}
+            Technology
           </motion.span>
           
           <h2 className="font-orbitron text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <AnimatedGradientText text={t('technology.title')} delay={0.2} />
+            <AnimatedGradientText text="Technology" delay={0.2} />
           </h2>
           <p className="font-orbitron text-xl md:text-2xl text-foreground/80 mb-6">
             <AnimatedText text={t('technology.subtitle')} delay={0.6} />
