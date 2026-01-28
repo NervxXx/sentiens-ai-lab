@@ -66,11 +66,9 @@ const AudienceCard = ({ icon, title, problem, solution, index, accentGradient, i
           transition={{ duration: 0.5 }}
         />
         
-        {/* Shimmer effect on hover */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full"
-          animate={{ translateX: isHovered ? '200%' : '-100%' }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
+        {/* Shimmer effect on hover - CSS only for performance */}
+        <div 
+          className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
         />
         
         {/* Header - always visible */}

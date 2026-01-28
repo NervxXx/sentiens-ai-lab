@@ -203,18 +203,8 @@ export const UniversesSection = () => {
                     </div>
                   </div>
 
-                  {/* Enhanced shimmer effect */}
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-                    initial={{ x: '-100%' }}
-                    animate={{ x: '200%' }}
-                    transition={{ 
-                      duration: 3, 
-                      repeat: Infinity, 
-                      repeatDelay: 2,
-                      ease: "easeInOut"
-                    }}
-                  />
+                  {/* Shimmer effect - CSS-based for better performance */}
+                  <div className="absolute inset-0 shimmer opacity-30" />
                 </div>
               </motion.div>
             ))}
