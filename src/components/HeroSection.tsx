@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Zap, Brain, Sparkles } from 'lucide-react';
+import { AnimatedText, AnimatedGradientText } from './AnimatedText';
 
 export const HeroSection = () => {
   return (
@@ -63,19 +64,18 @@ export const HeroSection = () => {
             </span>
           </motion.div>
 
-          {/* Main heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-orbitron font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight"
-          >
-            <span className="text-foreground">Мы выращиваем</span>
-            <br />
-            <span className="text-gradient-neural">интеллект.</span>
-            <br />
-            <span className="text-foreground">Полезный интеллект.</span>
-          </motion.h1>
+          {/* Main heading with letter-by-letter animation */}
+          <h1 className="font-orbitron font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight">
+            <span className="block text-foreground">
+              <AnimatedText text="Мы выращиваем" delay={0.3} />
+            </span>
+            <span className="block">
+              <AnimatedGradientText text="интеллект." delay={0.8} />
+            </span>
+            <span className="block text-foreground">
+              <AnimatedText text="Полезный интеллект." delay={1.3} />
+            </span>
+          </h1>
 
           {/* Subtitle */}
           <motion.p

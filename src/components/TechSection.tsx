@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, Brain, Database, User, Users, Cpu, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { AnimatedGradientText, AnimatedText } from './AnimatedText';
 
 interface PillarProps {
   icon: React.ReactNode;
@@ -316,13 +317,13 @@ export const TechSection = () => {
           </motion.span>
           
           <h2 className="font-orbitron text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="text-gradient-neural">Sentiens Engine</span>
+            <AnimatedGradientText text="Sentiens Engine" delay={0.2} />
           </h2>
           <p className="font-orbitron text-xl md:text-2xl text-foreground/80 mb-6">
-            Архитектура сознания
+            <AnimatedText text="Архитектура сознания" delay={0.6} />
           </p>
           <p className="font-inter text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Технологическая платформа, которая превращает языковые модели в автономных, целеустремленных и обучаемых агентов.
+            <AnimatedText text="Технологическая платформа, которая превращает языковые модели в автономных, целеустремленных и обучаемых агентов." delay={0.9} staggerChildren={0.01} />
           </p>
         </motion.div>
 

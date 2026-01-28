@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Clock, Calculator, Palette, MessageCircle, ArrowRight, Lock, Zap } from 'lucide-react';
+import { AnimatedText, AnimatedGradientText } from './AnimatedText';
 
 const mainApp = {
   id: 'epochal-dialog',
@@ -53,7 +54,8 @@ export const UniversesSection = () => {
             Наши вселенные
           </span>
           <h2 className="font-orbitron text-3xl md:text-5xl font-bold mb-6">
-            Порталы в новые <span className="text-gradient-neural">возможности</span>
+            <AnimatedText text="Порталы в новые" delay={0} />{' '}
+            <AnimatedGradientText text="возможности" delay={0.5} />
           </h2>
         </motion.div>
 

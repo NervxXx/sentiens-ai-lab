@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 interface Particle {
   x: number;
@@ -15,6 +15,14 @@ export const NeuralBackground = () => {
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const animationRef = useRef<number>();
+
+  // Parallax scroll effects
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 3000], [0, -400]);
+  const y2 = useTransform(scrollY, [0, 3000], [0, -600]);
+  const y3 = useTransform(scrollY, [0, 3000], [0, -300]);
+  const opacity1 = useTransform(scrollY, [0, 1500], [1, 0.3]);
+  const scale1 = useTransform(scrollY, [0, 2000], [1, 1.3]);
 
   const initParticles = useCallback((width: number, height: number) => {
     const particles: Particle[] = [];
@@ -151,19 +159,40 @@ export const NeuralBackground = () => {
         className="fixed inset-0 pointer-events-none z-0"
         style={{ background: 'transparent' }}
       />
-      {/* Gradient overlays */}
+      {/* Parallax gradient overlays */}
       <motion.div
         className="fixed inset-0 pointer-events-none z-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 2 }}
       >
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-neon-cyan/10 rounded-full blur-[120px] animate-glow-pulse" />
-        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-neon-purple/15 rounded-full blur-[100px] animate-glow-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-neon-green/10 rounded-full blur-[80px] animate-glow-pulse" style={{ animationDelay: '2s' }} />
+        <motion.div 
+          className="absolute top-0 left-1/4 w-96 h-96 bg-neon-cyan/10 rounded-full blur-[120px] animate-glow-pulse"
+          style={{ y: y1, opacity: opacity1, scale: scale1 }}
+        />
+        <motion.div 
+          className="absolute top-1/3 right-1/4 w-80 h-80 bg-neon-purple/15 rounded-full blur-[100px] animate-glow-pulse"
+          style={{ y: y2, opacity: opacity1 }}
+        />
+        <motion.div 
+          className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-neon-green/10 rounded-full blur-[80px] animate-glow-pulse"
+          style={{ y: y3 }}
+        />
+        {/* Additional parallax orbs */}
+        <motion.div 
+          className="absolute top-[60%] right-[10%] w-64 h-64 bg-neon-cyan/8 rounded-full blur-[100px]"
+          style={{ y: useTransform(scrollY, [0, 3000], [0, -500]) }}
+        />
+        <motion.div 
+          className="absolute top-[80%] left-[15%] w-48 h-48 bg-neon-purple/10 rounded-full blur-[80px]"
+          style={{ y: useTransform(scrollY, [0, 3000], [0, -700]) }}
+        />
       </motion.div>
-      {/* Grid overlay */}
-      <div className="fixed inset-0 pointer-events-none z-0 grid-bg opacity-20" />
+      {/* Grid overlay with parallax */}
+      <motion.div 
+        className="fixed inset-0 pointer-events-none z-0 grid-bg opacity-20"
+        style={{ y: useTransform(scrollY, [0, 5000], [0, -100]) }}
+      />
     </>
   );
 };
