@@ -44,7 +44,7 @@ export const SubscribeSection = () => {
   };
 
   return (
-    <section id="subscribe" ref={sectionRef} className="relative py-32 overflow-hidden">
+    <section id="subscribe" ref={sectionRef} className="relative py-32 overflow-x-hidden overflow-y-hidden">
       {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-t from-neon-purple/10 via-neon-cyan/5 to-transparent blur-3xl" />

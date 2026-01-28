@@ -38,7 +38,7 @@ export const Footer = () => {
   const footerLinks = getFooterLinks(t);
 
   return (
-    <footer className="relative pt-24 pb-8">
+    <footer className="relative pt-24 pb-8 overflow-x-hidden overflow-y-hidden">
       {/* Neural grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,243,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,243,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
       
@@ -117,7 +117,7 @@ export const Footer = () => {
           <div className="lg:col-span-2">
             <h4 className="font-orbitron font-semibold text-sm uppercase tracking-wider text-foreground mb-6 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-neon-purple" />
-              Компания
+              {t('footer.company.title')}
             </h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (

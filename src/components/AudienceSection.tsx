@@ -241,7 +241,7 @@ export const AudienceSection = () => {
   const audiences = getAudiences(t);
 
   return (
-    <section id="audience" className="relative py-24 md:py-32 overflow-x-hidden">
+    <section id="audience" className="relative py-24 md:py-32 overflow-x-hidden overflow-y-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 grid-bg opacity-20" />
       <motion.div 

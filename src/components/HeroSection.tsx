@@ -6,7 +6,7 @@ import { useLocalization } from '@/contexts/LocalizationContext';
 export const HeroSection = () => {
   const { t } = useLocalization();
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-x-hidden overflow-y-hidden">
       {/* Central glowing orb */}
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-30"
@@ -26,7 +26,7 @@ export const HeroSection = () => {
         <div className="absolute inset-36 rounded-full border border-neon-cyan/10" />
       </motion.div>
 
-      <div className="section-container relative z-10 overflow-hidden">
+      <div className="section-container relative z-10 overflow-x-hidden overflow-y-hidden">
         <div className="max-w-4xl mx-auto text-center">
           {/* Floating icons */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">

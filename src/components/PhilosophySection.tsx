@@ -52,7 +52,7 @@ export const PhilosophySection = () => {
   const pillars = getPillars(t);
 
   return (
-    <section id="philosophy" ref={sectionRef} className="relative py-32 overflow-x-hidden">
+    <section id="philosophy" ref={sectionRef} className="relative py-32 overflow-x-hidden overflow-y-hidden">
       {/* Central rotating structure */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
         <motion.div

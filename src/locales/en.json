@@ -99,6 +99,8 @@
         }
       }
     ],
+    "expand_more": "Read more",
+    "expand_less": "Collapse",
     "result": {
       "title": "The Result",
       "content": "We deliver not \"chatbots,\" but ready-to-use, autonomous, context-aware AI solutions that can be integrated into any product, educational course, or digital environment."
@@ -234,6 +236,6 @@
     "copyright": "© 2026 SentiensApps. Cultivating intelligence.",
     "made_with": "Created with",
     "and_ai": "and artificial intelligence",
-    "systems_operational": "All systems operational"
+    "systems_operational": "All systems go"
   }
 }

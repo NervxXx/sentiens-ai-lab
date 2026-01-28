@@ -99,6 +99,8 @@
         }
       }
     ],
+    "expand_more": "Читать далее",
+    "expand_less": "Свернуть",
     "result": {
       "title": "Результат",
       "content": "Мы поставляем не «чат-ботов», а готовые, автономные, контекстно-зависимые ИИ-решения, которые можно интегрировать в любой продукт, образовательный курс или цифровую среду."
@@ -206,12 +208,12 @@
       ]
     },
     "company": {
-      "title": "Компания",
+      "title": "Company",
       "items": [
-        { "label": "Философия", "href": "#philosophy" },
-        { "label": "Технология", "href": "#technology" },
-        { "label": "Аудитория", "href": "#audience" },
-        { "label": "Вселенные", "href": "#universes" }
+        { "label": "Philosophy", "href": "#philosophy" },
+        { "label": "Technology", "href": "#technology" },
+        { "label": "Audience", "href": "#audience" },
+        { "label": "Universes", "href": "#universes" }
       ]
     },
     "legal": {

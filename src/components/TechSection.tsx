@@ -13,9 +13,10 @@ interface PillarProps {
   fullContent: React.ReactNode;
   index: number;
   accentColor: 'cyan' | 'purple' | 'green' | 'mixed';
+  t: (key: string) => string;
 }
 
-const Pillar = ({ icon, title, subtitle, preview, fullContent, index, accentColor }: PillarProps) => {
+const Pillar = ({ icon, title, subtitle, preview, fullContent, index, accentColor, t }: PillarProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const accentClasses = {
@@ -104,7 +105,7 @@ const Pillar = ({ icon, title, subtitle, preview, fullContent, index, accentColo
           className="mt-4 flex items-center gap-2 font-inter text-sm text-primary hover:text-primary/80 transition-colors group/btn"
           aria-expanded={isExpanded}
         >
-          <span>{isExpanded ? 'Свернуть' : 'Читать далее'}</span>
+          <span>{isExpanded ? t('technology.expand_less') : t('technology.expand_more')}</span>
           <motion.span
             animate={{ rotate: isExpanded ? 180 : 0 }}
             transition={{ duration: 0.3 }}
@@ -207,7 +208,7 @@ const ArchitectureVisual = () => {
   );
 };
 
-const getPillars = (t: (key: string) => string): Omit<PillarProps, 'index'>[] => [
+const getPillars = (t: (key: string) => string) => [
   {
     icon: <Brain className="w-7 h-7" />,
     title: t('technology.pillars.0.title'),
@@ -291,7 +292,7 @@ export const TechSection = () => {
   const pillars = getPillars(t);
 
   return (
-    <section id="technology" className="relative py-24 md:py-32 overflow-x-hidden">
+    <section id="technology" className="relative py-24 md:py-32 overflow-x-hidden overflow-y-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 grid-bg opacity-30" />
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-neon-purple/10 rounded-full blur-3xl" />
@@ -354,7 +355,17 @@ export const TechSection = () => {
         {/* 4 Pillars */}
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-16">
           {pillars.map((pillar, index) => (
-            <Pillar key={index} {...pillar} index={index} />
+            <Pillar 
+              key={index} 
+              icon={pillar.icon}
+              title={pillar.title}
+              subtitle={pillar.subtitle}
+              preview={pillar.preview}
+              fullContent={pillar.fullContent}
+              accentColor={pillar.accentColor as 'cyan' | 'purple' | 'green' | 'mixed'}
+              index={index}
+              t={t}
+            />
           ))}
         </div>
 

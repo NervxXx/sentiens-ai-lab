@@ -50,7 +50,7 @@ export const UniversesSection = () => {
   const upcomingApps = getUpcomingApps(t);
 
   return (
-    <section id="universes" ref={sectionRef} className="relative py-32 overflow-x-hidden">
+    <section id="universes" ref={sectionRef} className="relative py-32 overflow-x-hidden overflow-y-hidden">
       <div className="section-container relative z-10">
         {/* Section header */}
         <motion.div
