@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Brain, Target, Network, type LucideIcon } from 'lucide-react';
+import { AnimatedText, AnimatedGradientText } from './AnimatedText';
 
 interface Pillar {
   icon: LucideIcon;
@@ -104,10 +105,11 @@ export const PhilosophySection = () => {
             Ядро Sentiens
           </span>
           <h2 className="font-orbitron text-3xl md:text-5xl font-bold mb-6">
-            Философия <span className="text-gradient-neural">Sentiens</span>
+            <AnimatedText text="Философия" delay={0} />{' '}
+            <AnimatedGradientText text="Sentiens" delay={0.4} />
           </h2>
           <p className="font-inter text-muted-foreground max-w-xl mx-auto text-lg">
-            Три принципа, которые определяют каждое наше решение и каждую строку кода.
+            <AnimatedText text="Три принципа, которые определяют каждое наше решение и каждую строку кода." delay={0.6} staggerChildren={0.015} />
           </p>
         </motion.div>
 

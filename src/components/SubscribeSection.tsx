@@ -2,6 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Mail, Check, Sparkles, BookOpen, FlaskConical, Palette, Briefcase } from 'lucide-react';
 import { toast } from 'sonner';
+import { AnimatedText, AnimatedGradientText } from './AnimatedText';
 
 const interests = [
   { id: 'history', label: 'История', icon: BookOpen },
@@ -67,11 +68,11 @@ export const SubscribeSection = () => {
           </motion.div>
 
           <h2 className="font-orbitron text-3xl md:text-5xl font-bold mb-6">
-            Станьте исследователем{' '}
-            <span className="text-gradient-neural">первым</span>
+            <AnimatedText text="Станьте исследователем" delay={0} />{' '}
+            <AnimatedGradientText text="первым" delay={0.6} />
           </h2>
           <p className="font-inter text-muted-foreground text-lg mb-12">
-            Подпишитесь, чтобы получить уведомление о запуске каждой новой вселенной и эксклюзивный доступ к бета-тестам.
+            <AnimatedText text="Подпишитесь, чтобы получить уведомление о запуске каждой новой вселенной и эксклюзивный доступ к бета-тестам." delay={0.8} staggerChildren={0.01} />
           </p>
 
           {!isSubmitted ? (
