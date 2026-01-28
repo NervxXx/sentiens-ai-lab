@@ -119,7 +119,7 @@ const Pillar = ({ icon, title, subtitle, preview, fullContent, index, accentColo
 // Animated architecture visualization
 const ArchitectureVisual = () => {
   return (
-    <div className="relative w-full max-w-xl mx-auto h-80 md:h-96">
+    <div className="relative w-full h-80 md:h-96 flex items-center justify-center">
       {/* Central core */}
       <motion.div
         animate={{ 
