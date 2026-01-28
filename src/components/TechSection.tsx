@@ -183,23 +183,23 @@ const ArchitectureVisual = () => {
         </motion.div>
       ))}
 
-      {/* Data flow particles */}
-      {[...Array(8)].map((_, i) => (
+      {/* Data flow particles - reduced count for performance */}
+      {[0, 2, 4, 6].map((i) => (
         <motion.div
           key={i}
           animate={{
-            x: [0, Math.cos(i * 45 * Math.PI / 180) * 150],
-            y: [0, Math.sin(i * 45 * Math.PI / 180) * 150],
-            opacity: [0, 1, 0],
-            scale: [0.5, 1, 0.5],
+            x: [0, Math.cos(i * 45 * Math.PI / 180) * 120],
+            y: [0, Math.sin(i * 45 * Math.PI / 180) * 120],
+            opacity: [0, 0.8, 0],
           }}
           transition={{
-            duration: 3,
+            duration: 4,
             repeat: Infinity,
-            delay: i * 0.4,
+            delay: i * 0.5,
             ease: 'easeInOut',
           }}
           className="absolute top-1/2 left-1/2 w-2 h-2 rounded-full bg-neon-cyan"
+          style={{ willChange: 'transform, opacity' }}
         />
       ))}
     </div>
