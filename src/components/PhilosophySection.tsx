@@ -140,7 +140,7 @@ export const PhilosophySection = () => {
                 />
                 
                 {/* Shimmer effect - CSS transition based */}
-                <div className="absolute inset-0 md:inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 md:h-full h-[120%] -top-[10%]" />
+                <div className="absolute inset-0 md:inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 md:h-full h-[120%] -top-[10%] md:top-0 md:h-[calc(100%+20px)]" />
                 
                 {/* Icon */}
                 <motion.div 

@@ -175,9 +175,9 @@ export const UniversesSection = () => {
                   stiffness: 100
                 }}
                 whileHover={{ y: -8, scale: 1.03 }}
-                className="group md:pb-20"
+                className="group md:pb-0"
               >
-                <div className="glass-card rounded-2xl p-6 h-18 md:h-96 relative overflow-hidden border border-border hover:border-primary/30 transition-all duration-500 hover:shadow-lg hover:shadow-primary/5">
+                <div className="glass-card rounded-2xl p-6 h-18 md:h-20 relative overflow-hidden border border-border hover:border-primary/30 transition-all duration-500 hover:shadow-lg hover:shadow-primary/5">
                   {/* Locked overlay with improved animation */}
                   <motion.div 
                     className="absolute inset-0 bg-background/30 backdrop-blur-sm flex items-center justify-center"
@@ -213,7 +213,7 @@ export const UniversesSection = () => {
                   </div>
 
                   {/* Shimmer effect - CSS-based for better performance */}
-                  <div className="absolute inset-0 shimmer opacity-30" />
+                  <div className="absolute inset-0 shimmer opacity-30 md:h-[384px]" />
                 </div>
               </motion.div>
             ))}

@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .legal-hub-theme {
+    --background: 218 70% 8%;
+    --foreground: 210 40% 98%;
+    --card: 218 60% 12%;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+    box-sizing: border-box;
+    --card-foreground: 210 40% 98%;
+    --popover: 218 60% 10%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 65% 54%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 215 50% 23%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 218 40% 18%;
+    --muted-foreground: 213 30% 70%;
+    --accent: 199 70% 45%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 40% 20%;
+    --input: 217 40% 20%;
+    --ring: 217 65% 54%;
+    --radius: 0.75rem;
+
+    --deep-blue: 218 70% 13%;
+    --cosmic-blue: 217 65% 54%;
+    --teal-accent: 199 70% 45%;
+    --glow-blue: 217 80% 60%;
+    --text-light: 213 40% 88%;
+    --glass-bg: 218 60% 15%;
+    --glass-border: 217 40% 25%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(217 65% 54%) 0%, hsl(199 70% 45%) 100%);
+    --gradient-text: linear-gradient(90deg, hsl(217 80% 70%) 0%, hsl(0 0% 100%) 50%, hsl(199 70% 60%) 100%);
+    --shadow-glow: 0 0 30px hsl(217 80% 60% / 0.3);
+    --shadow-card: 0 8px 32px hsl(218 70% 5% / 0.5);
+  }
+
+  .legal-hub-theme *,
+  .legal-hub-theme *::before,
+  .legal-hub-theme *::after {
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: hsl(var(--glass-bg) / 0.8);
+    border: 1px solid hsl(var(--glass-border) / 0.5);
+    @apply backdrop-blur-xl;
+  }
+
+  .glass-subtle {
+    background: hsl(var(--glass-bg) / 0.4);
+    border: 1px solid hsl(var(--glass-border) / 0.3);
+    @apply backdrop-blur-md;
+  }
+
+  .gradient-text {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.4s ease-out forwards;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.6s ease-out forwards;
+  }
+}
+
+@layer components {
+  .legal-card {
+    @apply glass rounded-xl p-6 md:p-8 transition-all duration-300;
+  }
+
+  .legal-card:hover {
+    @apply border-primary/50;
+    box-shadow: var(--shadow-glow), var(--shadow-card);
+    transform: translateY(-2px);
+  }
+
+  .important-block {
+    @apply bg-accent/10 border-l-4 border-accent p-4 rounded-r-lg my-4;
+  }
+
+  .nav-link {
+    @apply relative px-4 py-2 text-muted-foreground transition-colors duration-200;
+  }
+
+  .nav-link:hover {
+    @apply text-foreground;
+  }
+
+  .nav-link.active {
+    @apply text-primary;
+  }
+
+  .nav-link.active::after {
+    content: '';
+    @apply absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-primary rounded-full;
+  }
+
+  /* Fix container widths for responsive layout */
+  .legal-hub-theme .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .legal-hub-theme .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .legal-hub-theme .container {
+      max-width: 80rem;
+    }
+  }
+
+  @media (min-width: 1450px) {
+    .legal-hub-theme .container {
+      max-width: 90rem;
+    }
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes particle-float {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translate(10px, -20px);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-5px, -40px);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translate(15px, -20px);
+    opacity: 0.7;
+  }
+}
+
+.particle {
+  animation: particle-float linear infinite;
+}

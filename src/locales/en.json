@@ -219,9 +219,9 @@
     "legal": {
       "title": "Legal",
       "items": [
-        { "label": "Privacy Policy", "href": "#" },
-        { "label": "Terms of Use", "href": "#" },
-        { "label": "Cookies", "href": "#" }
+        { "label": "Privacy Policy", "href": "/legal#privacy" },
+        { "label": "Terms of Use", "href": "/legal#terms" },
+        { "label": "Cookies", "href": "/legal#cookies" }
       ]
     },
     "social": {
