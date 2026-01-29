@@ -35,12 +35,31 @@ export const SubscribeSection = () => {
 
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          email, 
+          interests: selectedInterests.map(id => interests.find(i => i.id === id)?.label)
+        }),
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast.success('Вы успешно подписались на обновления!');
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        toast.success(t('subscribe.success'));
+      } else {
+        toast.error(result.error || t('subscribe.error'));
+      }
+    } catch (error) {
+      toast.error(t('subscribe.error'));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
