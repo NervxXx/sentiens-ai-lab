@@ -170,6 +170,40 @@ const LegalContent = () => {
 };
 
 const LegalHub = () => {
+  // Устанавливаем мета-теги для страницы через document.title (простой способ без Helmet)
+  useEffect(() => {
+    document.title = 'Sentiens Legal Hub — Юридические AI-решения';
+    
+    // Обновляем meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', 'Инновационные AI-решения для юридической практики. Автоматизация документооборота, анализ договоров и правовая консультация с помощью искусственного интеллекта.');
+    
+    // Обновляем canonical
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', 'https://sentiensapps.online/legal/');
+    
+    return () => {
+      // Восстанавливаем оригинальные значения при unmount
+      document.title = 'SentiensApps — Мы выращиваем интеллект';
+      if (metaDescription) {
+        metaDescription.setAttribute('content', 'Семейство AI-приложений, где каждая нейросеть — не игрушка, а инструмент для прорыва. Исследуйте вселенные искусственного интеллекта.');
+      }
+      if (canonical) {
+        canonical.setAttribute('href', 'https://sentiensapps.online/');
+      }
+    };
+  }, []);
+
   return (
     <LanguageProvider>
       <LegalContent />

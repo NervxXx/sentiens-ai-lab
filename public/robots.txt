@@ -1,8 +1,10 @@
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Twitterbot
 Allow: /
@@ -12,3 +14,14 @@ Allow: /
 
 User-agent: *
 Allow: /
+Crawl-delay: 1
+
+# Запрещаем индексацию служебных файлов
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.js.map$
+Disallow: /admin/
+
+# Указываем расположение sitemap
+Sitemap: https://sentiensapps.online/sitemap.xml

@@ -90,6 +90,41 @@
   .animate-fade-up {
     animation: fade-up 0.6s ease-out forwards;
   }
+
+  /* Disable animations on mobile */
+  @media (max-width: 370px) {
+    .animate-float,
+    .animate-pulse-glow,
+    .animate-fade-in,
+    .animate-fade-up {
+      animation: none !important;
+    }
+  }
+  
+  /* Legal section title responsive sizes */
+  @media (max-width: 370px) {
+    .legal-section-title {
+      font-size: 16px !important;
+    }
+  }
+  
+  @media (min-width: 371px) and (max-width: 639px) {
+    .legal-section-title {
+      font-size: 18px !important;
+    }
+  }
+  
+  @media (min-width: 640px) and (max-width: 767px) {
+    .legal-section-title {
+      font-size: 20px !important;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .legal-section-title {
+      font-size: 30px !important;
+    }
+  }
 }
 
 @layer components {

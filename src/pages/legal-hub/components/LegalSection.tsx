@@ -38,15 +38,14 @@ const LegalSection = ({ id, icon, title, intro, sections, importantNote, isVisib
       className={cn('scroll-mt-24 transition-all duration-700', isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10')}
     >
       <div className="legal-card">
-        <div className="flex items-start gap-4 mb-6">
+        <div className="flex items-center gap-4 mb-6">
           <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center shrink-0">
             {icon}
           </div>
-          <div className="flex-1">
-            <h2 className="text-2xl md:text-3xl font-bold mb-2 gradient-text">{title}</h2>
-            <p className="text-muted-foreground leading-relaxed">{intro}</p>
-          </div>
+          <h2 className="legal-section-title font-bold gradient-text">{title}</h2>
         </div>
+        
+        <p className="text-muted-foreground leading-relaxed mb-6">{intro}</p>
 
         <button
           onClick={toggleAll}
@@ -86,7 +85,7 @@ const LegalSection = ({ id, icon, title, intro, sections, importantNote, isVisib
               <div
                 className={cn(
                   'overflow-hidden transition-all duration-300',
-                  expandedSections.includes(index) ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                  expandedSections.includes(index) ? 'max-h-120 opacity-100' : 'max-h-0 opacity-0'
                 )}
               >
                 <div className="px-4 pb-4">

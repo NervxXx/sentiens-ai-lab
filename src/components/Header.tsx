@@ -59,7 +59,7 @@ export const Header = () => {
           >
             <div className="relative">
               <div className="w-10 h-10 rounded-xl overflow-hidden bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 p-0.5">
-                <img src={logo} alt="SentiensApps Logo" className="w-full h-full object-contain rounded-lg" />
+                <img src={logo} alt="SentiensApps Logo" width="40" height="40" loading="lazy" className="w-full h-full object-contain rounded-lg" />
               </div>
               <div className="absolute inset-0 rounded-xl bg-neon-cyan/30 blur-xl opacity-0 group-hover:opacity-80 transition-opacity" />
             </div>
