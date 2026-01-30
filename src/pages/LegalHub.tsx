@@ -12,7 +12,7 @@ import ProgressTimeline from './legal-hub/components/ProgressTimeline';
 import ScrollToTop from './legal-hub/components/ScrollToTop';
 import SearchBar from './legal-hub/components/SearchBar';
 import Footer from './legal-hub/components/Footer';
-import ScrollProgress from './legal-hub/components/ScrollProgress';
+import { ScrollProgress } from '@/components/ScrollProgress';
 
 
 const LegalContent = () => {
