@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Twitter, Linkedin, Youtube, Instagram, Mail, MapPin, Zap, Heart, Sparkles } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
-import logo from '@/assets/logo.png';
+import { Logo } from '@/components/Logo';
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -45,7 +45,7 @@ const Footer = () => {
             >
               <div className="relative">
                 <div className="w-12 h-12 rounded-2xl overflow-hidden bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 p-0.5">
-                  <img src={logo} alt="SentiensApps" className="w-full h-full object-contain rounded-xl" />
+                  <Logo size="sm" alt="SentiensApps" className="w-full h-full object-contain rounded-xl" />
                 </div>
                 <div className="absolute inset-0 rounded-2xl bg-neon-cyan/30 blur-xl opacity-0 group-hover:opacity-80 transition-opacity" />
               </div>

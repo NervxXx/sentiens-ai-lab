@@ -58,7 +58,7 @@ const NeuralBackgroundFull = () => {
   const initParticles = useCallback((width: number, height: number) => {
     const particles: Particle[] = [];
     // Reduced particle count for better performance
-    const particleCount = Math.min(Math.floor((width * height) / 20000), 60);
+    const particleCount = Math.min(Math.floor((width * height) / 25000), 40); // Reduced from 60 to 40
     
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -107,7 +107,7 @@ const NeuralBackgroundFull = () => {
       if (particle.y > height) particle.y = 0;
 
       // Draw connections (limit to nearby particles for performance)
-      const maxConnections = 3;
+      const maxConnections = 2; // Reduced from 3 for better performance
       let connectionCount = 0;
       
       for (let j = i + 1; j < particles.length && connectionCount < maxConnections; j++) {
@@ -163,7 +163,7 @@ const NeuralBackgroundFull = () => {
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     let lastTime = 0;
-    const targetFPS = 30;
+    const targetFPS = 20; // Reduced FPS for better performance
     const frameInterval = 1000 / targetFPS;
 
     const animate = (currentTime: number) => {
@@ -173,6 +173,12 @@ const NeuralBackgroundFull = () => {
       if (deltaTime < frameInterval) return;
       
       lastTime = currentTime - (deltaTime % frameInterval);
+      
+      // Throttle expensive operations
+      if (deltaTime > 16) { // Skip frame if behind
+        return;
+      }
+      
       drawParticles(ctx, canvas.width, canvas.height);
     };
 

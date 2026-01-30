@@ -1,18 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const ScrollProgress = () => {
   const [progress, setProgress] = useState(0);
+  const docHeightRef = useRef(0);
 
   useEffect(() => {
+    // Cache document height once to avoid repeated reflows
+    docHeightRef.current = document.documentElement.scrollHeight - window.innerHeight;
+    
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
+      const scrollPercent = (scrollTop / docHeightRef.current) * 100;
       setProgress(Math.min(100, Math.max(0, scrollPercent)));
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Recalculate on resize
+    const handleResize = () => {
+      docHeightRef.current = document.documentElement.scrollHeight - window.innerHeight;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
@@ -33,8 +45,8 @@ const ScrollProgress = () => {
               : progress >= 100
                 ? 'calc(100% - 32px)'
                 : `calc(${progress}% - 32px)`,
-          background: 'linear-gradient(90deg, transparent, hsl(var(--accent) / 0.8), hsl(var(--accent)))',
-          boxShadow: '0 0 20px hsl(var(--accent) / 0.6), 0 0 40px hsl(var(--accent) / 0.4)',
+          background: 'linear-gradient(90deg, transparent, #00ffb3cc, #00ffb3)', // accent 80% opacity
+          boxShadow: '0 0 20px #00ffb399, 0 0 40px #00ffb366', // accent 60% and 40% opacity
           opacity: progress > 0 ? 1 : 0,
         }}
       />

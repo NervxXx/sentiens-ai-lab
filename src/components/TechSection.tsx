@@ -119,7 +119,7 @@ const Pillar = ({ icon, title, subtitle, preview, fullContent, index, accentColo
 };
 
 // Animated architecture visualization
-const ArchitectureVisual = () => {
+const ArchitectureVisual = ({ t }: { t: (key: string) => string }) => {
   return (
     <div className="relative w-full h-80 md:h-96 flex items-center justify-center">
       {/* Central core */}
@@ -140,10 +140,10 @@ const ArchitectureVisual = () => {
 
       {/* Orbiting layers */}
       {[
-        { size: 180, duration: 20, color: 'cyan', icon: Brain, label: 'Agent Core' },
-        { size: 260, duration: 25, color: 'purple', icon: Database, label: 'Mnemosyne' },
-        { size: 340, duration: 30, color: 'green', icon: User, label: 'Persona' },
-        { size: 420, duration: 35, color: 'mixed', icon: Users, label: 'Multi-Agent' },
+        { size: 180, duration: 20, color: 'cyan', icon: Brain, label: t('technology_pillars.agent_core') },
+        { size: 260, duration: 25, color: 'purple', icon: Database, label: t('technology_pillars.mnemosyne_layer') },
+        { size: 340, duration: 30, color: 'green', icon: User, label: t('technology_pillars.persona_framework') },
+        { size: 420, duration: 35, color: 'mixed', icon: Users, label: t('technology_pillars.multi_agent_orchestration') },
       ].map((layer, i) => (
         <motion.div
           key={i}
@@ -314,11 +314,11 @@ export const TechSection = () => {
             transition={{ delay: 0.2 }}
             className="inline-block px-4 py-2 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 text-neon-cyan text-sm font-medium mb-6"
           >
-            Technology
+            {t('section_badges.technology')}
           </motion.span>
           
           <h2 className="font-orbitron text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <AnimatedGradientText text="Technology" delay={0.2} />
+            <AnimatedGradientText text={t('technology.title')} delay={0.2} />
           </h2>
           <p className="font-orbitron text-xl md:text-2xl text-foreground/80 mb-6">
             <AnimatedText text={t('technology.subtitle')} delay={0.6} />
@@ -336,7 +336,7 @@ export const TechSection = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="hidden md:block mb-20"
         >
-          <ArchitectureVisual />
+          <ArchitectureVisual t={t} />
         </motion.div>
 
         {/* Key message */}

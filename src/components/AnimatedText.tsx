@@ -19,6 +19,7 @@ export const AnimatedText = ({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 
+  // Limit animation to words only, not individual characters
   const words = text.split(' ');
 
   const container = {
@@ -26,7 +27,7 @@ export const AnimatedText = ({
     visible: (i = 1) => ({
       opacity: 1,
       transition: {
-        staggerChildren: staggerChildren,
+        staggerChildren: staggerChildren * 2, // Slower stagger for better performance
         delayChildren: delay,
       },
     }),
@@ -58,23 +59,16 @@ export const AnimatedText = ({
       animate={isInView ? 'visible' : 'hidden'}
     >
       {words.map((word, wordIndex) => (
-        <span key={wordIndex} className="inline-block whitespace-nowrap">
-          {word.split('').map((char, charIndex) => (
-            <motion.span
-              key={`${wordIndex}-${charIndex}`}
-              variants={child}
-              className="inline-block"
-              style={{ 
-                willChange: 'transform, opacity',
-              }}
-            >
-              {char}
-            </motion.span>
-          ))}
-          {wordIndex < words.length - 1 && (
-            <span className="inline-block">&nbsp;</span>
-          )}
-        </span>
+        <motion.span
+          key={wordIndex}
+          variants={child}
+          className="inline-block mr-2 last:mr-0"
+          style={{ 
+            willChange: 'transform, opacity',
+          }}
+        >
+          {word}
+        </motion.span>
       ))}
     </motion.span>
   );
@@ -90,6 +84,7 @@ export const AnimatedGradientText = ({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 
+  // Limit animation to words only, not individual characters
   const words = text.split(' ');
 
   const container = {
@@ -97,7 +92,7 @@ export const AnimatedGradientText = ({
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: staggerChildren,
+        staggerChildren: staggerChildren * 2, // Slower stagger for better performance
         delayChildren: delay,
       },
     },
@@ -133,24 +128,17 @@ export const AnimatedGradientText = ({
       style={{ perspective: 1000 }}
     >
       {words.map((word, wordIndex) => (
-        <span key={wordIndex} className="inline-block whitespace-nowrap">
-          {word.split('').map((char, charIndex) => (
-            <motion.span
-              key={`${wordIndex}-${charIndex}`}
-              variants={child}
-              className="inline-block text-gradient-neural"
-              style={{ 
-                willChange: 'transform, opacity',
-                transformStyle: 'preserve-3d',
-              }}
-            >
-              {char}
-            </motion.span>
-          ))}
-          {wordIndex < words.length - 1 && (
-            <span className="inline-block">&nbsp;</span>
-          )}
-        </span>
+        <motion.span
+          key={wordIndex}
+          variants={child}
+          className="inline-block text-gradient-neural mr-2 last:mr-0"
+          style={{ 
+            willChange: 'transform, opacity',
+            transformStyle: 'preserve-3d',
+          }}
+        >
+          {word}
+        </motion.span>
       ))}
     </motion.span>
   );

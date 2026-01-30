@@ -85,6 +85,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Account for fixed header */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
     overflow-x: hidden;

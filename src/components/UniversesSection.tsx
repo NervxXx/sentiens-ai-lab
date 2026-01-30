@@ -60,7 +60,7 @@ export const UniversesSection = () => {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1 rounded-full text-sm font-inter text-neon-green border border-neon-green/30 mb-6">
-            Universes
+            {t('section_badges.universes')}
           </span>
           <h2 className="font-orbitron text-3xl md:text-5xl font-bold mb-6">
             <AnimatedText text={t('universes.subtitle').split(' ')[0]} delay={0} />{' '}

@@ -1,6 +1,5 @@
 export default {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-};
+  plugins: [
+    // PurgeCSS will be added via Vite plugin
+  ]
+}

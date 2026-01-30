@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 import { cn } from '@/lib/utils';
-import logoImage from '@/assets/logo.png';
+import { Logo } from '@/components/Logo';
 
 interface HeaderProps {
   activeSection: string;
@@ -17,7 +17,7 @@ const Header = ({ activeSection }: HeaderProps) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -45,7 +45,7 @@ const Header = ({ activeSection }: HeaderProps) => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 group">
-            <img src={logoImage} alt="SentiensApps" className="w-10 h-10 object-contain" />
+            <Logo size="xs" alt="SentiensApps" className="w-10 h-10 object-contain" />
             <span className="text-xl font-bold gradient-text hidden sm:inline">SentiensApps</span>
           </a>
 

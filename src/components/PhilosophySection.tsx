@@ -106,11 +106,11 @@ export const PhilosophySection = () => {
           className="text-center mb-20"
         >
           <span className="inline-block px-4 py-1.5 rounded-full text-sm font-inter text-primary border border-primary/30 mb-6 backdrop-blur-sm bg-primary/5">
-            Philosophy Core
+            {t('section_badges.philosophy_core')}
           </span>
           <h2 className="font-orbitron text-3xl md:text-5xl font-bold mb-6">
-            <AnimatedText text="Philosophy" delay={0} />{' '}
-            <AnimatedGradientText text="Sentiens" delay={0.4} />
+            <AnimatedText text={t('section_titles.philosophy')} delay={0} />{' '}
+            <AnimatedGradientText text={t('section_titles.sentiens')} delay={0.4} />
           </h2>
           <p className="font-inter text-muted-foreground max-w-xl mx-auto text-lg">
             <AnimatedText text={t('philosophy.subtitle')} delay={0.6} staggerChildren={0.015} />

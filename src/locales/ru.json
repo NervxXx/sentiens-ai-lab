@@ -5,6 +5,23 @@
     "universes": "Вселенные",
     "audience": "Аудитория"
   },
+  "section_badges": {
+    "philosophy_core": "Ядро философии",
+    "technology": "Технологии",
+    "audience": "Аудитория",
+    "universes": "Вселенные"
+  },
+  "section_titles": {
+    "philosophy": "Философия",
+    "sentiens": "Sentiens",
+    "who_is_this_for": "Для кого это?"
+  },
+  "technology_pillars": {
+    "agent_core": "Agent Core",
+    "mnemosyne_layer": "Mnemosyne Layer",
+    "persona_framework": "Persona Framework",
+    "multi_agent_orchestration": "Multi-Agent Orchestration"
+  },
   "hero": {
     "title": "Новая эра искусственного интеллекта",
     "subtitle": "Эпоха приложений, управляемых агентами. Полезный интеллект.",
@@ -13,8 +30,8 @@
     "cta_secondary": "Узнать больше"
   },
   "philosophy": {
-    "core_title": "The Sentiens Core",
-    "title": "Philosophy Sentiens",
+    "core_title": "Ядро Sentiens",
+    "title": "Философия Sentiens",
     "subtitle": "Три принципа, которые определяют каждое наше решение и каждую строку кода.",
     "pillars": [
       {
@@ -32,8 +49,8 @@
     ]
   },
   "technology": {
-    "badge": "Technology",
-    "title": "Technology",
+    "badge": "Технологии",
+    "title": "Технологии",
     "subtitle": "Архитектура сознания",
     "description": "Технологическая платформа, которая превращает языковые модели в автономных, целеустремленных и обучаемых агентов.",
     "key_message": "Наша разработка это продуманная архитектура, которая превращает языковые модели (LLM) в более способных и полезных агентов. Мы добавляем им память о прошлых взаимодействиях, способность ставить цели в рамках задачи и уникальные черты характера. Наша цель — выйти за рамки простого чата.",
@@ -111,8 +128,8 @@
     }
   },
   "audience": {
-    "title": "Audience",
-    "subtitle": "Who is this for?",
+    "title": "Аудитория",
+    "subtitle": "Для кого это?",
     "description": "Наша технология создаёт новый класс цифровых сущностей. Мы решаем задачи там, где требуется не просто ответ, а осмысленный диалог, управляемая симуляция или живое взаимодействие.",
     "problem_label": "Проблема",
     "solution_label": "Наше решение",
@@ -146,7 +163,7 @@
     "cta": "Нажмите на карточку, чтобы узнать больше"
   },
   "universes": {
-    "title": "Universes",
+    "title": "Вселенные",
     "subtitle": "Порталы в новые возможности",
     "tags": {
       "history": "История",

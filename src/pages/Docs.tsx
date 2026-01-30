@@ -10,14 +10,8 @@ const Docs = () => {
       if (location.hash) {
         const element = document.querySelector(location.hash);
         if (element) {
-          // Apply scroll padding before scrolling
-          document.documentElement.style.scrollPaddingTop = '100px';
+          // Use CSS scroll-padding instead of JS manipulation to avoid forced reflow
           element.scrollIntoView({ behavior: 'smooth' });
-          
-          // Clean up scroll padding after scroll is complete
-          setTimeout(() => {
-            document.documentElement.style.scrollPaddingTop = '';
-          }, 1000);
         }
       } else {
         window.scrollTo(0, 0);
@@ -35,16 +29,6 @@ const Docs = () => {
       window.removeEventListener('hashchange', handleScrollToSection);
     };
   }, [location]);
-
-  useEffect(() => {
-    // Add scroll-padding-top to html element to account for fixed header
-    document.documentElement.style.scrollPaddingTop = '100px';
-    
-    return () => {
-      // Clean up the style when component unmounts
-      document.documentElement.style.scrollPaddingTop = '';
-    };
-  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black">

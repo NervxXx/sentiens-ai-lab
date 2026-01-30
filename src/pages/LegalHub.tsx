@@ -1,6 +1,6 @@
 import './legal-hub/legal-hub.css';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Shield, FileText, Cookie } from 'lucide-react';
 import { LanguageProvider, useLanguage } from './legal-hub/hooks/useLanguage';
@@ -20,10 +20,21 @@ const LegalContent = () => {
   const [activeSection, setActiveSection] = useState('privacy');
   const [scrollProgress, setScrollProgress] = useState(0);
   const [visibleSections, setVisibleSections] = useState<string[]>([]);
+  const docHeightRef = useRef(0);
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const { t } = useLanguage();
 
   useEffect(() => {
+    // Cache initial document height
+    docHeightRef.current = document.documentElement.scrollHeight - window.innerHeight;
+    
+    // Cache section elements
+    const sections = ['privacy', 'terms', 'cookies'];
+    sections.forEach(id => {
+      sectionRefs.current[id] = document.getElementById(id);
+    });
+
     const prevHtmlOverflowX = document.documentElement.style.overflowX;
     const prevBodyOverflowX = document.body.style.overflowX;
 
@@ -36,30 +47,51 @@ const LegalContent = () => {
     };
   }, []);
 
+  // Debounce expensive scroll operations
+  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
+  
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrollTop / docHeight) * 100;
+      const progress = (scrollTop / docHeightRef.current) * 100;
       setScrollProgress(Math.min(100, Math.max(0, progress)));
 
-      const sections = ['privacy', 'terms', 'cookies'];
-      const sectionElements = sections.map((id) => document.getElementById(id));
-
-      for (let i = sectionElements.length - 1; i >= 0; i--) {
-        const element = sectionElements[i];
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 200) {
-            setActiveSection(sections[i]);
-            break;
+      // Debounce expensive layout reads to prevent forced reflows
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      
+      scrollTimeoutRef.current = setTimeout(() => {
+        // Use cached elements to avoid repeated DOM queries
+        const sections = ['privacy', 'terms', 'cookies'];
+        
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const element = sectionRefs.current[sections[i]];
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top <= 200) {
+              setActiveSection(sections[i]);
+              break;
+            }
           }
         }
-      }
+      }, 100); // 100ms debounce
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Update document height on resize
+    const handleResize = () => {
+      docHeightRef.current = document.documentElement.scrollHeight - window.innerHeight;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
   }, []);
 
   useEffect(() => {

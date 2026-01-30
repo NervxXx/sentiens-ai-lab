@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Twitter, Linkedin, Youtube, Instagram, Mail, MapPin, Zap, Heart, Sparkles } from 'lucide-react';
-import logo from '@/assets/logo.png';
+import { Logo } from '@/components/Logo';
 import { useLocalization } from '@/contexts/LocalizationContext';
 
 const getSocialLinks = (t: (key: string) => string) => [
@@ -61,7 +61,11 @@ export const Footer = () => {
             >
               <div className="relative">
                 <div className="w-12 h-12 rounded-2xl overflow-hidden bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 p-0.5">
-                  <img src={logo} alt={t('footer.logo_alt')} className="w-full h-full object-contain rounded-xl" />
+                  <Logo 
+                    size="sm" 
+                    alt={t('footer.logo_alt')} 
+                    className="w-full h-full object-contain rounded-xl"
+                  />
                 </div>
                 <div className="absolute inset-0 rounded-2xl bg-neon-cyan/30 blur-xl opacity-0 group-hover:opacity-80 transition-opacity" />
               </div>
@@ -167,7 +171,7 @@ export const Footer = () => {
                   aria-label={social.label}
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl glass-card text-muted-foreground hover:text-neon-cyan hover:border-neon-cyan/30 transition-all duration-300 group w-40"
+                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl glass-card text-muted-foreground hover:text-neon-cyan hover:border-neon-cyan/30 transition-all duration-300 group w-40 xl-1260:w-24"
                 >
                   <social.icon className="w-4 h-4" />
                   <span className="font-inter text-xs truncate">{social.label}</span>

@@ -57,7 +57,7 @@ const AudienceCard = ({ icon, title, problem, solution, index, accentGradient, i
         onClick={() => setIsExpanded(!isExpanded)}
         whileHover={{ 
           y: -8,
-          borderColor: 'hsl(var(--primary) / 0.5)',
+          borderColor: '#60f0ff80', // hsl(187, 100%, 50%) with 50% opacity
         }}
         transition={{ duration: 0.3 }}
       >
@@ -277,7 +277,7 @@ export const AudienceSection = () => {
             transition={{ delay: 0.1, type: "spring", stiffness: 150 }}
             className="inline-block px-4 py-2 rounded-full border border-neon-purple/30 bg-neon-purple/5 text-neon-purple text-sm font-medium mb-6"
           >
-            Audience
+            {t('section_badges.audience')}
           </motion.span>
           
           <motion.div 
@@ -288,7 +288,7 @@ export const AudienceSection = () => {
             className="mb-6"
           >
             <h2 className="font-orbitron text-3xl md:text-5xl lg:text-6xl font-bold">
-              <AnimatedGradientText text={t('audience.subtitle')} delay={0.2} />
+              <AnimatedGradientText text={t('section_titles.who_is_this_for')} delay={0.2} />
             </h2>
           </motion.div>
           

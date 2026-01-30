@@ -5,6 +5,23 @@
     "universes": "Universes",
     "audience": "Audience"
   },
+  "section_badges": {
+    "philosophy_core": "Philosophy Core",
+    "technology": "Technology",
+    "audience": "Audience",
+    "universes": "Universes"
+  },
+  "section_titles": {
+    "philosophy": "Philosophy",
+    "sentiens": "Sentiens",
+    "who_is_this_for": "Who is this for?"
+  },
+  "technology_pillars": {
+    "agent_core": "Agent Core",
+    "mnemosyne_layer": "Mnemosyne Layer",
+    "persona_framework": "Persona Framework",
+    "multi_agent_orchestration": "Multi-Agent Orchestration"
+  },
   "hero": {
     "title": "The New Era of Artificial Intelligence",
     "subtitle": "The Age of Agent-Driven Applications. Purposeful Intelligence.",

@@ -12,7 +12,7 @@ export const ScrollProgress = () => {
       style={{
         width,
         background: 'linear-gradient(90deg, hsl(var(--neon-cyan)) 0%, hsl(var(--neon-purple)) 50%, hsl(var(--neon-green)) 100%)',
-        boxShadow: '0 0 10px hsl(var(--neon-cyan) / 0.8), 0 0 20px hsl(var(--neon-purple) / 0.5)',
+        boxShadow: '0 0 10px #00eeffcc, 0 0 20px #a35cff80', // neon-cyan 80% opacity, neon-purple 50% opacity
       }}
     />
   );
