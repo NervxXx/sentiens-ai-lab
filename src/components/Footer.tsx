@@ -1,7 +1,29 @@
 import { motion } from 'framer-motion';
 import { Twitter, Linkedin, Youtube, Instagram, Mail, MapPin, Zap, Heart, Sparkles } from 'lucide-react';
-import { Logo } from '@/components/Logo';
+import logo from '@/assets/logo.png';
 import { useLocalization } from '@/contexts/LocalizationContext';
+import ruTranslations from '../locales/ru.json';
+import enTranslations from '../locales/en.json';
+
+const tBoth = (key: string) => {
+  const keys = key.split('.');
+
+  const getValue = (obj: any) => {
+    let value: any = obj;
+    for (const k of keys) {
+      value = value?.[k];
+    }
+    return value;
+  };
+
+  const ru = getValue(ruTranslations);
+  const en = getValue(enTranslations);
+
+  if (typeof ru === 'string' && typeof en === 'string') return `${ru} / ${en}`;
+  if (typeof ru === 'string') return ru;
+  if (typeof en === 'string') return en;
+  return key;
+};
 
 const getSocialLinks = (t: (key: string) => string) => [
   { icon: Linkedin, href: 'https://www.linkedin.com/in/sentiens-apps', label: t('footer.social.items.0.label') },
@@ -18,10 +40,10 @@ const getFooterLinks = (t: (key: string) => string) => ({
     { label: t('footer.product.items.3.label'), href: t('footer.product.items.3.href') },
   ],
   company: [
-    { label: t('navigation.philosophy'), href: '#philosophy' },
-    { label: t('navigation.technology'), href: '#technology' },
-    { label: t('navigation.audience'), href: '#audience' },
-    { label: t('navigation.universes'), href: '#universes' },
+    { label: tBoth('footer.company.items.0.label'), href: '#philosophy' },
+    { label: tBoth('footer.company.items.1.label'), href: '#technology' },
+    { label: tBoth('footer.company.items.2.label'), href: '#audience' },
+    { label: tBoth('footer.company.items.3.label'), href: '#universes' },
   ],
   legal: [
     { label: t('footer.legal.items.0.label'), href: t('footer.legal.items.0.href') },
@@ -61,11 +83,7 @@ export const Footer = () => {
             >
               <div className="relative">
                 <div className="w-12 h-12 rounded-2xl overflow-hidden bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 p-0.5">
-                  <Logo 
-                    size="sm" 
-                    alt={t('footer.logo_alt')} 
-                    className="w-full h-full object-contain rounded-xl"
-                  />
+                  <img src={logo} alt={t('footer.logo_alt')} className="w-full h-full object-contain rounded-xl" />
                 </div>
                 <div className="absolute inset-0 rounded-2xl bg-neon-cyan/30 blur-xl opacity-0 group-hover:opacity-80 transition-opacity" />
               </div>
@@ -121,7 +139,7 @@ export const Footer = () => {
           <div className="lg:col-span-2">
             <h4 className="font-orbitron font-semibold text-sm uppercase tracking-wider text-foreground mb-6 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-neon-purple" />
-              {t('footer.company.title')}
+              {tBoth('footer.company.title')}
             </h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
@@ -163,7 +181,7 @@ export const Footer = () => {
             <h4 className="font-orbitron font-semibold text-sm uppercase tracking-wider text-foreground mb-6">
               {t('footer.social.title')}
             </h4>
-            <div className="flex flex-col gap-3">
+            <div className="grid grid-cols-2 gap-3">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.label}
@@ -171,10 +189,10 @@ export const Footer = () => {
                   aria-label={social.label}
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl glass-card text-muted-foreground hover:text-neon-cyan hover:border-neon-cyan/30 transition-all duration-300 group w-40 xl-1260:w-24"
+                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl glass-card text-muted-foreground hover:text-neon-cyan hover:border-neon-cyan/30 transition-all duration-300 group"
                 >
                   <social.icon className="w-4 h-4" />
-                  <span className="font-inter text-xs truncate">{social.label}</span>
+                  <span className="font-inter text-xs">{social.label}</span>
                 </motion.a>
               ))}
             </div>

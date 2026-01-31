@@ -226,12 +226,12 @@ const LegalHub = () => {
     
     return () => {
       // Восстанавливаем оригинальные значения при unmount
-      document.title = 'SentiensApps — Мы выращиваем интеллект';
+      document.title = 'SentiensApps — Эпоха приложений, управляемых агентами';
       if (metaDescription) {
-        metaDescription.setAttribute('content', 'Семейство AI-приложений, где каждая нейросеть — не игрушка, а инструмент для прорыва. Исследуйте вселенные искусственного интеллекта.');
+        metaDescription.setAttribute('content', 'экосистема приложений, где каждая нейросеть становится вашим инструментом для обучения, диалога и решения задач.');
       }
       if (canonical) {
-        canonical.setAttribute('href', 'https://sentiensapps.online/');
+        canonical.setAttribute('href', 'https://sentiensapps.online/'); 
       }
     };
   }, []);
