@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Twitter, Linkedin, Youtube, Instagram, Mail, MapPin, Zap, Heart, Sparkles } from 'lucide-react';
-import logo from '@/assets/logo.png';
+import logo from '@/assets/logo-original.png';
 import { useLocalization } from '@/contexts/LocalizationContext';
 import ruTranslations from '../locales/ru.json';
 import enTranslations from '../locales/en.json';
@@ -40,10 +40,10 @@ const getFooterLinks = (t: (key: string) => string) => ({
     { label: t('footer.product.items.3.label'), href: t('footer.product.items.3.href') },
   ],
   company: [
-    { label: tBoth('footer.company.items.0.label'), href: '#philosophy' },
-    { label: tBoth('footer.company.items.1.label'), href: '#technology' },
-    { label: tBoth('footer.company.items.2.label'), href: '#audience' },
-    { label: tBoth('footer.company.items.3.label'), href: '#universes' },
+    { label: t('footer.company.items.0.label'), href: '#philosophy' },
+    { label: t('footer.company.items.1.label'), href: '#technology' },
+    { label: t('footer.company.items.2.label'), href: '#audience' },
+    { label: t('footer.company.items.3.label'), href: '#universes' },
   ],
   legal: [
     { label: t('footer.legal.items.0.label'), href: t('footer.legal.items.0.href') },
@@ -139,7 +139,7 @@ export const Footer = () => {
           <div className="lg:col-span-2">
             <h4 className="font-orbitron font-semibold text-sm uppercase tracking-wider text-foreground mb-6 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-neon-purple" />
-              {tBoth('footer.company.title')}
+              {t('footer.company.title')}
             </h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
@@ -181,7 +181,7 @@ export const Footer = () => {
             <h4 className="font-orbitron font-semibold text-sm uppercase tracking-wider text-foreground mb-6">
               {t('footer.social.title')}
             </h4>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.label}

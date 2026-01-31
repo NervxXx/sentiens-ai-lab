@@ -295,10 +295,10 @@
     "company": {
       "title": "Компания",
       "items": [
-        { "label": "Philosophy", "href": "#philosophy" },
-        { "label": "Technology", "href": "#technology" },
-        { "label": "Audience", "href": "#audience" },
-        { "label": "Universes", "href": "#universes" }
+        { "label": "Философия", "href": "#philosophy" },
+        { "label": "Технологии", "href": "#technology" },
+        { "label": "Аудитория", "href": "#audience" },
+        { "label": "Вселенные", "href": "#universes" }
       ]
     },
     "legal": {

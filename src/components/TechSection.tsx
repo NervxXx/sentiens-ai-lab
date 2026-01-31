@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { ChevronDown, ChevronUp, Brain, Database, User, Users, Cpu, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AnimatedGradientText, AnimatedText } from './AnimatedText';
+import { useLocalization } from '@/contexts/LocalizationContext';
 
 interface PillarProps {
   icon: React.ReactNode;
@@ -207,6 +208,7 @@ const ArchitectureVisual = () => {
 };
 
 export const TechSection = () => {
+  const { t } = useLocalization();
   const pillars: Omit<PillarProps, 'index'>[] = [
     {
       icon: <Brain className="w-7 h-7" />,
@@ -385,7 +387,7 @@ export const TechSection = () => {
           <div className="inline-block glass-card rounded-2xl p-6 md:p-8 border border-neon-green/30 bg-gradient-to-br from-neon-green/10 to-transparent">
             <h4 className="font-orbitron text-lg md:text-xl font-bold text-foreground mb-3">{t('technology.result.title')}</h4>
             <p className="font-inter text-muted-foreground max-w-2xl">
-              {('technology.result.content')}
+              {t('technology.result.content')}
             </p>
           </div>
         </motion.div>
